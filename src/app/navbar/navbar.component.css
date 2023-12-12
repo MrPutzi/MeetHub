@@ -1,0 +1,5 @@
+.navbar-nav a.nav-link.active {
+    color:brown;
+    font-weight: bold;
+  }
+  

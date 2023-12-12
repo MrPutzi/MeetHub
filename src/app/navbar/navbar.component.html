@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">MeetHub</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/events-dashboard" routerLinkActive="active">Dashboard</a>
+        </li>
+        <li  class="nav-item">
+          <a class="nav-link" routerLink="/add-event" routerLinkActive="active">Add an event</a>
+        </li>
+      </ul>
+      
+      <span *ngIf="username" class="navbar-text">{{username}}</span>
+     
+      <ul class="navbar-nav d-flex mb-2 mb-lg-0">
+        <li *ngIf="username; else elseBlock" class="nav-item">
+          <button type="button" class="nav-link" (click)="logout()">Logout</button>
+        </li>
+        <ng-template #elseBlock>
+          <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+        </ng-template>
+      </ul>
+    </div>
+  </div>
+</nav>
