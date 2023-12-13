@@ -1,1 +1,18 @@
-<p>events-dashboard works!</p>
+
+
+ <div class="card">
+    <div *ngFor="let event of events" class="card-body">
+      <h5 class="card-title">{{event.name}}</h5>
+      <p class="card-text">Date: {{event.date}}</p>
+      <p class="card-text">Location: {{event.location}}</p>
+      <p class="card-text">Attendees: {{event.attendees}}</p>
+      <div class="btn-group">
+        <button type="button" class="btn btn-secondary btn-sm bi bi-pencil"
+          data-bs-toggle="modal" data-bs-target="#eventEditModal"
+          (click)="onEdit(event)"></button>
+        <button type="button" class="btn btn-danger btn-sm bi bi-trash"
+          (click)="onDelete(event)"></button>
+      </div>
+    </div>
+  </div>
+  

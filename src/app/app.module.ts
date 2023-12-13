@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { EventsDashboardComponent } from './events-dashboard/events-dashboard.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -22,6 +23,7 @@ import { EventsDashboardComponent } from './events-dashboard/events-dashboard.co
     HttpClientModule,
     FormsModule,
     EventsDashboardComponent,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [],
