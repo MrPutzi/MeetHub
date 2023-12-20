@@ -3,6 +3,7 @@ import Event from '../../entities/event';
 import { Router } from '@angular/router';
 import { EventsService } from '../../services/events.service';
 import { NgFor } from '@angular/common'; // Import NgFor directive
+import { Observable, map } from 'rxjs';
 
 @Component({
   selector: 'app-events-dashboard',
@@ -23,7 +24,7 @@ export class EventsDashboardComponent implements OnInit{
       this.loadEvents();
   }
 
-  loadEvents(): Event[] {
+  /*loadEvents(): Event[] {
     
     this.eventsService.getLocalEvents().subscribe(events => {
       this.events = events;
@@ -32,12 +33,17 @@ export class EventsDashboardComponent implements OnInit{
     
     return this.events;
   }
+*/
+loadEvents() {
+  this.eventsService.getEvents().subscribe(events => {
+    this.events = events;
+  });
+}
 
-
-  onEdit(event: Event) {
-    this.actionWithEvent = 'edit';
-    this.eventToEdit = event;
-  }
+onEdit(event: Event) {
+  this.actionWithEvent = 'edit';
+  this.eventToEdit = event;
+}
 
   onDelete(event: Event) {
     this.eventsService.deleteEvent(event.id!).subscribe(() => {

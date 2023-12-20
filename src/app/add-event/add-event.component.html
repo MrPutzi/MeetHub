@@ -1,7 +1,42 @@
-<form (ngSubmit)="onSubmit()">
-    <!-- replace with your actual form fields -->
-    <input formControlName="name">
-    <input formControlName="date">
-    <input formControlName="location">
-    <button  type="submit">Save Event</button>
+  <form onsubmit="onSubmit()">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="eventName">Event Name</label>
+        <input type="text" class="form-control" id="eventName" placeholder="Event Name">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="eventDate">Event Date</label>
+        <input type="date" class="form-control" id="eventDate">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="eventLocation">Event Location</label>
+      <input type="text" class="form-control" id="eventLocation" placeholder="Event Location">
+    </div>
+    <div class="form-group">
+      <label for="eventDescription">Event Description</label>
+      <textarea class="form-control" id="eventDescription" rows="3"></textarea>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="eventOrganizer">Event Organizer</label>
+        <input type="text" class="form-control" id="eventOrganizer" placeholder="Event Organizer">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="eventCategory">Event Category</label>
+        <select id="eventCategory" class="form-control">
+          <option selected>Choose...</option>
+          <option>...</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="eventAgreement">
+        <label class="form-check-label" for="eventAgreement">
+          I agree to the terms and conditions
+        </label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Event</button>
   </form>

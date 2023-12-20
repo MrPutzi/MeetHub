@@ -6,12 +6,12 @@
       <p class="card-text">Date: {{event.date}}</p>
       <p class="card-text">Location: {{event.location}}</p>
       <p class="card-text">Attendees: {{event.attendees}}</p>
-      <div class="btn-group">
+      <div class="btn-group" style="height: 50px ;width: 100px;">
         <button type="button" class="btn btn-secondary btn-sm bi bi-pencil"
-          data-bs-toggle="modal" data-bs-target="#eventEditModal"
-          (click)="onEdit(event)"></button>
+          (click)="onEdit(event)">Attend</button>
         <button type="button" class="btn btn-danger btn-sm bi bi-trash"
           (click)="onDelete(event)"></button>
+      
       </div>
     </div>
   </div>

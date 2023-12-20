@@ -1,13 +1,14 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, EMPTY, Observable, catchError, defaultIfEmpty, map, of } from 'rxjs';
-import  Event  from '../entities/event';
+import Event from '../entities/event';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventsService {
-  private url = 'http://localhost:8080/'; // replace with your server's URL
+  private url = 'http://localhost:8080'; // replace with your server's URL
 
 
   public Events: Event[] = [
@@ -38,9 +39,37 @@ export class EventsService {
     const allEvents = [...this.Events, ...localEvents];
     return of(allEvents);
   }
-
+/*
   getEvents(): Observable<Event[]> {
-    return this.http.get<Event[]>(this.url);
+    const params = new HttpParams()
+      .set('dbName', 'test')
+      .set('collectionName', 'event');
+
+    return this.http.get<Event[]>(`${this.url}/getevents`, { params }).pipe(
+      map(jsonEvents => jsonEvents.map(jsonEvent => Event.clone(jsonEvent))),
+      catchError(error => this.errorHandling(error))
+    );
+  }
+*/
+getEvents(): Observable<Event[]> {
+  return this.http.get<Event[]>(`${this.url}/getevents`, {
+    params: new HttpParams()
+      .set('dbName', 'test')
+      .set('collectionName', 'event'),  
+    headers: { "Access-Control-Allow-Origin": "*" }
+    } 
+  ).pipe(
+    map(jsonEvents => jsonEvents.map(jsonEvent => new Event(jsonEvent.id, jsonEvent.name, new Date(jsonEvent.date), jsonEvent.location, jsonEvent.attendees))),
+    catchError(error => this.errorHandling(error))
+  );
+}
+
+
+  addEvent(event: Event): Observable<Event> {
+    return this.http.post<Event>(this.url, event).pipe(
+      map(jsonEvent => Event.clone(jsonEvent)),
+      catchError(error => this.errorHandling(error))
+    );
   }
 
   getEvent(id: number): Observable<Event> {
