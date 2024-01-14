@@ -11,6 +11,7 @@ export const DEFAULT_NAVIGATE_AFTER_LOGIN = "/events";
   providedIn: 'root'
 })
 export class UsersService {
+  private restServerUrl: string = "http://localhost:8080/";
 
   private users: User[] = [
     new User("MarekService","marek@jano.sk"), 
@@ -55,9 +56,6 @@ export class UsersService {
     return this.users;
   }
 
-  getLocalUsers(): Observable<User[]> {
-    return of(this.users);
-  }
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.url + 'users').pipe(
@@ -66,12 +64,6 @@ export class UsersService {
     );
   }
 
-  getExtendedUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.url + 'users/' + this.token).pipe(
-      map(jsonUsers => this.cloneUsers(jsonUsers)),
-      catchError(error => this.errorHandling(error))
-    );
-  }
 
   private cloneUsers(users: User[]): User[] {
     return users.map(user => User.clone(user));
@@ -112,36 +104,24 @@ export class UsersService {
     );
   }
 
-  login(auth:Auth):Observable<boolean> {
-    return this.http.post(this.url + "login", auth,{responseType: 'text'}).pipe(
-      map(token => {
-        this.token = token;
-        this.username = auth.name;
-        this.messageService.success("User " + auth.name + " is logged in.");
-        return true;
+  public login(auth: Auth): Observable<boolean> {
+    return this.http.post(this.url + 'login', auth).pipe(
+      tap((json: any) => {
+        this.token = json.token;
+        this.username = json.username;
       }),
-      catchError(error => {
-        if (error instanceof HttpErrorResponse) {
-          if (error.status === 401) {
-            this.messageService.error("Wrong name or password");
-            return of(false);
-          }
-        }
-        return throwError(() => error)
-      }),
+      map(() => true),
       catchError(error => this.errorHandling(error))
     );
   }
 
-  logout() {
-    this.http.get(this.url + 'logout/' + this.token).pipe(
-      tap(() => {
-        this.token = '';
-        this.username = '';
-      }),
-      catchError(error => this.errorHandling(error))
-    ).subscribe();
-  }
+logout() {
+  this.token = '';
+  this.username = '';
+  this.messageService.success("User is logged out.");
+}
+
+ 
 
   isLoggedIn() : boolean {
     return !!this.token;

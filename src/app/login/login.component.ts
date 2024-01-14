@@ -15,21 +15,17 @@ import { DEFAULT_NAVIGATE_AFTER_LOGIN, UsersService } from 'src/services/users.s
 })
 export class LoginComponent {
  
-  auth: Auth = new Auth('Peter','sovy');
   usersService = inject(UsersService);
   router = inject(Router);
+  auth: Auth = {
+    name: '',
+    password: ''
+  };
 
   onSubmit() {
-    console.log("Submit");
-    console.log(this.auth);
-    this.usersService.login(this.auth).subscribe(
-      success => {
-        if (success) {
-          // presmeruj sa na privatnu zonu
-          this.router.navigateByUrl(this.usersService.navigateAfterLogin);
-          this.usersService.navigateAfterLogin = DEFAULT_NAVIGATE_AFTER_LOGIN;
-        } 
-      }
-    )
+    this.usersService.login(this.auth).subscribe(() => {
+      this.router.navigateByUrl(this.usersService.navigateAfterLogin);
+    });
   }
 }
+

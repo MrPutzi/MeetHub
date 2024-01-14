@@ -3,35 +3,21 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { EventsDashboardComponent } from './events-dashboard/events-dashboard.component';
 import { AddEventComponent } from './add-event/add-event.component';
-
-/*
-const routes: Routes = [
-  { path: 'Login', component: LoginComponent, pathMatch: 'full' },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'Dashboard', component:EventsDashboardComponent, pathMatch: 'full'},
-  
-{ path: 'AddEvent', component:AddEventComponent, pathMatch: 'full'}
-];
-*/
+import { LoggedInComponent } from './logged-in/logged-in.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-  { path: 'Login', component: LoginComponent, pathMatch: 'full' },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'Dashboard', component: EventsDashboardComponent, pathMatch: 'full'},
-  { path: 'AddEvent', component: AddEventComponent, pathMatch: 'full' }
-    ]
-  
-
+  { path: 'login', component: LoginComponent },
+  { path: 'dashboard', component: EventsDashboardComponent },
+  { path: 'addEvent', component: AddEventComponent },
+  { path: 'loggedIn', component: LoggedInComponent, canActivate: [AuthGuard] }
+]
 @NgModule({
-  declarations: [
-    
-  ],
+  declarations: [],
   imports: [
     RouterModule.forRoot(routes)
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { 
-  
-
-}
+export class AppRoutingModule { }
