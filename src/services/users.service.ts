@@ -5,7 +5,7 @@ import { Auth } from "../entities/auth";
 import { User } from "../entities/user";
 import { MessageService } from './message.service';
 
-export const DEFAULT_NAVIGATE_AFTER_LOGIN = "/events";
+export const DEFAULT_NAVIGATE_AFTER_LOGIN = "Dashboard";
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +50,10 @@ export class UsersService {
 
   public loggedUser(): Observable<string> {
     return this.loggedUserSubject.asObservable();
+  }
+
+  public getUsersUsername(): string {
+    return this.username;
   }
 
   getUsersSynchronous(): User[] {
@@ -104,16 +108,27 @@ export class UsersService {
     );
   }
 
-  public login(auth: Auth): Observable<boolean> {
-    return this.http.post(this.url + 'login', auth).pipe(
-      tap((json: any) => {
-        this.token = json.token;
-        this.username = json.username;
+  login(auth:Auth):Observable<boolean> {
+    return this.http.post(this.url + "login", auth,{responseType: 'text'}).pipe(
+      map(token => {
+        this.token = token;
+        this.username = auth.username;
+        this.messageService.success("User " + auth.username + " is logged in.");
+        return true;
       }),
-      map(() => true),
+      catchError(error => {
+        if (error instanceof HttpErrorResponse) {
+          if (error.status === 401) {
+            this.messageService.error("Wrong name or password");
+            return of(false);
+          }
+        }
+        return throwError(() => error)
+      }),
       catchError(error => this.errorHandling(error))
     );
   }
+
 
 logout() {
   this.token = '';

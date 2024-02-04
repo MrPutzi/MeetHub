@@ -1,45 +1,52 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Event } from '../../entities/event'; // Correct the module path
-import { EventsService } from '../../services/events.service'; // Correct the module path
-import { Inject } from '@angular/core'; // Add this import
+import { Event } from '../../entities/event';
+import { EventsService } from '../../services/events.service';
+import { Inject } from '@angular/core';
+import { UsersService } from '../../services/users.service';
+import { NgForm } from '@angular/forms';
+import { Observer } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-add-event',
   templateUrl: './add-event.component.html',
   styleUrls: ['./add-event.component.css']
 })
 export class AddEventComponent implements OnInit {
+  eventForm!: FormGroup;
+  eventOrganizer: string = this.usersService.getUsersUsername();
+  eventCategory!: string; // Add this line
+  eventAttendees!: string; // Add this line
+  eventDate!: Date; // Add this line
+  eventDescription!: string; // Add this line
+  eventLocation!: string; // Add this line
+  eventName!: string; // Add this line
 
-  eventtForm!: FormGroup; // Change variable name to eventtForm
 
-  constructor(private formBuilder: FormBuilder, @Inject(EventsService) private eventsService: EventsService) { } // Add @Inject decorator
+  constructor(private formBuilder: FormBuilder, @Inject(EventsService) private eventsService: EventsService, @Inject(UsersService) private usersService: UsersService, private http: HttpClient) {
+    this.eventOrganizer = this.usersService.getUsersUsername();
+  }
+
+
 
   ngOnInit() {
-    this.eventtForm = this.formBuilder.group({ // Change variable name to eventtForm
+    this.eventForm = this.formBuilder.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
       date: ['', Validators.required],
       location: ['', Validators.required],
-      attendees: ['', Validators.required]
+      attendees: ['', Validators.required],
+      category: ['', Validators.required]
     });
   }
 
-  onSubmit() {
-    if (this.eventtForm.valid) { // Change variable name to eventtForm
-      const event: Event = {
-        name: this.eventtForm.get('name')?.value, // Change variable name to eventtForm
-        description: this.eventtForm.get('description')?.value, // Change variable name to eventtForm
-        date: this.eventtForm.get('date')?.value, // Change variable name to eventtForm
-        location: this.eventtForm.get('location')?.value,
-        id: 0,
-        attendees: []
-      };
-
-      this.eventsService.addEvent(event).subscribe((event: Event) => { 
-        console.log(event); // Change variable name to event
-        this.eventtForm.reset(); // Change variable name to eventtForm
-      });
-    }
+  onSubmit(eventForm: NgForm) {
+    const formData = eventForm.value;
+    this.http.post('http://localhost:3000/addevent', formData).subscribe(response => {
+      console.log(response);
+    }, error => {
+    });
   }
 
 }

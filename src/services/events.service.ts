@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, EMPTY, Observable, catchError, defaultIfEmpty, map, of } from 'rxjs';
 import Event from '../entities/event';
@@ -10,14 +10,45 @@ import { HttpParams } from '@angular/common/http';
 export class EventsService {
   private url = 'http://localhost:8080'; // replace with your server's URL
 
+  getEvents(): Observable<Event[]> {
+    return this.http.get<Event[]>(`${this.url}/getevents`).pipe(
+      map(documents => documents.map(document => this.convertDocumentToEvent(document))),
+      catchError(error => this.errorHandling(error))
+    );
+  }
+
+  private convertDocumentToEvent(document: any): Event {
+    return new Event(
+      document.id,
+      document.name,
+      new Date(document.date),
+      document.location,
+      document.attendees,
+      document.description
+      // Add other fields as needed
+    );
+  }
+ 
+  addEvent(event: Event): Observable<string> {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    const body = {
+      "name": event.name,
+      "date": event.date.toISOString(),
+      "location": event.location,
+      "attendees": event.attendees,
+      "description": event.description
+    };
+    return this.http.post(`${this.url}/addevent`, body, { headers }).pipe(
+      map(() => 'Event added'), 
+      catchError(error => this.errorHandling(error))
+    );
+  }
+
 
   public Events: Event[] = [
   new Event(1, "Music listening", new Date(), "Bratislava", ["Marek", "Jano", "Adolf"]),
   new Event(2, "Chilling", new Date(), "Bratislava", ["Marek", "Jano", "Adolf"]),
   new Event(3, "Búchanie zdravotných", new Date(), "Bratislava", ["Marek", "Jano", "Adolf"]),
-  { id: 4, name: "Music listening", date: new Date(), location: "Bratislava", attendees: ["Marek", "Jano", "Adolf"] },
-  { id: 5, name: "Chilling", date: new Date(), location: "Bratislava", attendees: ["Marek", "Jano", "Adolf"] },
-  { id: 6, name: "Búchanie zdravotných", date: new Date(), location: "Bratislava", attendees: ["Marek", "Jano", "Adolf"]}
   ];
 
 
@@ -51,26 +82,8 @@ export class EventsService {
     );
   }
 */
-getEvents(): Observable<Event[]> {
-  return this.http.get<Event[]>(`${this.url}/getevents`, {
-    params: new HttpParams()
-      .set('dbName', 'test')
-      .set('collectionName', 'event'),  
-    headers: { "Access-Control-Allow-Origin": "*" }
-    } 
-  ).pipe(
-    map(jsonEvents => jsonEvents.map(jsonEvent => new Event(jsonEvent.id, jsonEvent.name, new Date(jsonEvent.date), jsonEvent.location, jsonEvent.attendees))),
-    catchError(error => this.errorHandling(error))
-  );
-}
 
 
-  addEvent(event: Event): Observable<Event> {
-    return this.http.post<Event>(this.url, event).pipe(
-      map(jsonEvent => Event.clone(jsonEvent)),
-      catchError(error => this.errorHandling(error))
-    );
-  }
 
   getEvent(id: number): Observable<Event> {
     return this.http.get<Event>(`${this.url}/${id}`);

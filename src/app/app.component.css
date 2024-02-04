@@ -1,0 +1,13 @@
+.navbar {
+    background-color: #f8f9fa;
+  }
+  
+  .navbar .nav-link {
+    color: #343a40;
+    transition: background-color 0.3s ease;
+  }
+  
+  .navbar .nav-link:hover {
+    background-color: #e2e6ea;
+    color: #343a40;
+  }

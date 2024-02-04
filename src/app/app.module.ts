@@ -10,6 +10,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { EventsDashboardComponent } from './events-dashboard/events-dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Auth } from '../entities/auth';
+import { AuthGuard } from './auth.guard';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -19,16 +22,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoginComponent,
     NavbarComponent
   ],
-  imports: [
+  imports: [   
+    AppRoutingModule,
     BrowserModule,
+    CommonModule,
     HttpClientModule,
     FormsModule,
     EventsDashboardComponent,
     ReactiveFormsModule,
-    AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
