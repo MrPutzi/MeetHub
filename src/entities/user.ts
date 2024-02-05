@@ -1,14 +1,16 @@
-
 export class User {
+  public role: string = 'user';
+
   public static clone(user: User): User {
-    return new User(user.name, 
-                    user.email, 
-                    user.id, 
-                    user.lastLogin? new Date(user.lastLogin): undefined, 
-                    user.password,
-                    user.active === undefined ? true : user.active ,
-                    );
-  } 
+    return new User(
+      user.name,
+      user.email,
+      user.id,
+      user.lastLogin ? new Date(user.lastLogin) : undefined,
+      user.password,
+      user.active === undefined ? true : user.active,
+    );
+  }
 
   constructor(
     public name: string,
@@ -17,9 +19,9 @@ export class User {
     public lastLogin?: Date,
     public password = '',
     public active = true,
-  ){}
+  ) {}
 
   public toString() {
-    return this.name + ", email:"+ this.email + ", id:" + this.id; 
+    return this.name + ", email:" + this.email + ", id:" + this.id;
   }
 }

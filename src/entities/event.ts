@@ -18,6 +18,10 @@ export class Event {
         this.attendees = attendees;
         this.description = description;
     }
+
+    getFormattedDate(): string {
+        return this.date.toLocaleDateString();
+    }
 }
 
 export default Event;

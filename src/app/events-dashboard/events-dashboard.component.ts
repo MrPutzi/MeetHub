@@ -34,10 +34,11 @@ export class EventsDashboardComponent implements OnInit{
     return this.events;
   }
 */
-loadEvents() {
+loadEvents(){
   this.eventsService.getEvents().subscribe(events => {
     this.events = events;
   });
+  return this.events;
 }
 
 onEdit(event: Event) {

@@ -1,42 +1,13 @@
-  <form onsubmit="onSubmit()">
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="eventName">Event Name</label>
-        <input type="text" class="form-control" id="eventName" placeholder="Event Name">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="eventDate">Event Date</label>
-        <input type="date" class="form-control" id="eventDate">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="eventLocation">Event Location</label>
-      <input type="text" class="form-control" id="eventLocation" placeholder="Event Location">
-    </div>
-    <div class="form-group">
-      <label for="eventDescription">Event Description</label>
-      <textarea class="form-control" id="eventDescription" rows="3"></textarea>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="eventOrganizer">Event Organizer</label>
-        <input type="text" class="form-control" id="eventOrganizer" placeholder="Event Organizer">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="eventCategory">Event Category</label>
-        <select id="eventCategory" class="form-control">
-          <option selected>Choose...</option>
-          <option>...</option>
-        </select>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="eventAgreement">
-        <label class="form-check-label" for="eventAgreement">
-          I agree to the terms and conditions
-        </label>
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Add Event</button>
-  </form>
+<form (ngSubmit)="submitForm()" [formGroup]="eventForm">
+    <label for="name">Event Name:</label><br>
+    <input type="text" id="name" formControlName="name"><br>
+    <label for="date">Event Date (dd-MM-yyyy HH:mm:ss):</label><br>
+    <input type="text" id="date" formControlName="date"><br>
+    <label for="location">Event Location:</label><br>
+    <input type="text" id="location" formControlName="location"><br>
+    <label for="attendees">Event Attendees (one per line):</label><br>
+    <textarea id="attendees" formControlName="attendees"></textarea><br>
+    <label for="description">Event Description:</label><br>
+    <textarea id="description" formControlName="description"></textarea><br>
+    <input type="submit" value="Submit">
+</form>

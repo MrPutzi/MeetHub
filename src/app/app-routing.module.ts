@@ -7,11 +7,11 @@ import { LoggedInComponent } from './logged-in/logged-in.component';
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: EventsDashboardComponent },
-  { path: 'addEvent', component: AddEventComponent },
-  { path: 'loggedIn', component: LoggedInComponent, canActivate: [AuthGuard] }
+  { path: '', redirectTo: '/LoggedIn', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent, pathMatch: 'full'  },
+  { path: 'Dashboard', component: EventsDashboardComponent, canActivate: [AuthGuard]  },
+  { path: 'AddEvent', component: AddEventComponent, canActivate: [AuthGuard] },
+  { path: 'LoggedIn', component: LoggedInComponent, canActivate: [AuthGuard] }
 ]
 @NgModule({
   declarations: [],

@@ -15,13 +15,9 @@ import { DEFAULT_NAVIGATE_AFTER_LOGIN, UsersService } from 'src/services/users.s
 })
 export class LoginComponent {
  
+  auth: Auth = new Auth('admin', 'admin');
   usersService = inject(UsersService);
   router = inject(Router);
-  auth: Auth = {
-    name: '',
-    password: ''
-  };
-
   onSubmit() {
     this.usersService.login(this.auth).subscribe(() => {
       this.router.navigateByUrl(this.usersService.navigateAfterLogin);
