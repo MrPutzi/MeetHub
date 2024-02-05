@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, EMPTY, Observable, catchError, defaultIfEmpty, map, of } from 'rxjs';
 import Event from '../entities/event';
 import { HttpParams } from '@angular/common/http';
+import { User } from '../entities/user';
+import { M } from '@angular/cdk/keycodes';
 
 @Injectable({
   providedIn: 'root'
@@ -45,14 +47,9 @@ export class EventsService {
   }
 
 
-  public Events: Event[] = [
-  new Event(1, "Music listening", new Date(), "Bratislava", ["Marek", "Jano", "Adolf"]),
-  new Event(2, "Chilling", new Date(), "Bratislava", ["Marek", "Jano", "Adolf"]),
-  new Event(3, "Búchanie zdravotných", new Date(), "Bratislava", ["Marek", "Jano", "Adolf"]),
-  ];
+public Events: Event[] = [];
 
-
-  constructor(private http: HttpClient) {}
+constructor(private http: HttpClient) {}
 
   getEventsSynchronous(): Event[] {
     return this.Events;
@@ -97,11 +94,8 @@ export class EventsService {
     return this.Events.map(event => Event.clone(event));
   }
 
-  public saveEvent(event: Event): Observable<Event> {
-    return this.http.post<Event>(this.url, event).pipe(
-      map(jsonEvent => Event.clone(jsonEvent)),
-      catchError(error => this.errorHandling(error))
-    );
+  public saveEvent(event: Event) {
+    return this.http.post(`${this.url}`, event);
   }
 
 

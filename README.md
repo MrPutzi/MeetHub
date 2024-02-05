@@ -1,27 +1,24 @@
 # MeetHub
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.3.
+Running the Java Server
+Open a terminal window.
 
-## Development server
+Navigate inside the project folder with:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+cd Meethub
 
-## Code scaffolding
+Start the server with:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+java -jar demo.jar
 
-## Build
+Running the angular project
+Open a new terminal window
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Navigate inside the project folder with:
 
-## Running unit tests
+cd Meethub
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Start the project
 
-## Running end-to-end tests
+ng serve
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

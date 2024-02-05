@@ -17,6 +17,7 @@ export class EventsDashboardComponent implements OnInit{
   events:Event[] = [];
   actionWithEvent: string = 'new';
   eventToEdit:Event = new Event(0, '', new Date(), '', []);
+  username ='admin';
 
   constructor(private eventsService: EventsService, private router: Router) { }
 
@@ -47,9 +48,12 @@ onEdit(event: Event) {
 }
 
   onDelete(event: Event) {
-    this.eventsService.deleteEvent(event.id!).subscribe(() => {
-      this.loadEvents();
-    });
+    const confirmation = confirm("Delete this task: " + event.name + "?");
+    if (confirmation) {
+      this.eventsService.deleteEvent(event.id!).subscribe(() => {
+        this.loadEvents();
+      });
+    }
   }
 
 

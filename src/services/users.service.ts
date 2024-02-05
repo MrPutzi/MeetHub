@@ -16,8 +16,7 @@ export class UsersService {
   private users: User[] = [
     new User("MarekService","marek@jano.sk"), 
     new User("JanoService","jano@jano.sk",1, new Date(), "tajne"), 
-    new User("AdolfService","adolf@ss.de"),
-    { id: 4, name: "MrPutzi", email: "asd@asd.sk",password: "tajne", lastLogin: new Date(), active: true },
+    new User("AdolfService","adolf@ss.de")
   ];
   private url = "http://localhost:8080/";
   private loggedUserSubject = new BehaviorSubject(this.username);
