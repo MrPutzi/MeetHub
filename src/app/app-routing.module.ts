@@ -5,14 +5,16 @@ import { EventsDashboardComponent } from './events-dashboard/events-dashboard.co
 import { AddEventComponent } from './add-event/add-event.component';
 import { LoggedInComponent } from './logged-in/logged-in.component';
 import { AuthGuard } from './auth.guard';
+import { EditEventComponent } from './edit-event/edit-event.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/LoggedIn', pathMatch: 'full' },
   { path: 'login', component: LoginComponent, pathMatch: 'full'  },
   { path: 'Dashboard', component: EventsDashboardComponent, canActivate: [AuthGuard]  },
   { path: 'AddEvent', component: AddEventComponent, canActivate: [AuthGuard] },
-  { path: 'LoggedIn', component: LoggedInComponent, canActivate: [AuthGuard] }
-]
+  { path: 'LoggedIn', component: LoggedInComponent, canActivate: [AuthGuard] },
+    { path: 'edit-event/:id', component: EditEventComponent }
+  ];
 @NgModule({
   declarations: [],
   imports: [

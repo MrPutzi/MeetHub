@@ -1,6 +1,9 @@
 import { User } from "./user";
 
 export class Event {
+    // Remove the index signature
+    // [x: string]: Event;
+
     public static clone(event: Event): Event {
         return new Event(event.id, event.name, event.date, event.location, event.attendees, event.description);
     }

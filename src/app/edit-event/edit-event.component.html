@@ -1,0 +1,12 @@
+<form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+    <label>
+      Name:
+      <input type="text" formControlName="name">
+    </label>
+    <label>
+      Date:
+      <input type="date" formControlName="date">
+    </label>
+    <!-- Add other form fields -->
+    <button type="submit">Submit</button>
+  </form>

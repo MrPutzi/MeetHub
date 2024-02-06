@@ -12,6 +12,7 @@ export class MessageService {
 
   constructor() { }
 
+
   isAdmin(userId: number): boolean {
     const user = this.users.find(user => user.id === userId);
     return user?.role === 'admin';
@@ -34,3 +35,8 @@ export interface Message {
   message: string;
   type: 'error'|'success';
 }
+
+
+
+
+

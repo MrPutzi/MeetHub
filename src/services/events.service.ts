@@ -10,6 +10,17 @@ import { M } from '@angular/cdk/keycodes';
   providedIn: 'root'
 })
 export class EventsService {
+  attendEvent(eventId: string, username: string) {
+    return this.http.post(`${this.url}/attendevent`, { eventId, username }).pipe(
+      catchError(error => this.errorHandling(error))
+    );
+  }
+
+
+  static addAttendee(id: number, user: User) {
+
+  }
+
   private url = 'http://localhost:8080'; // replace with your server's URL
 
   getEvents(): Observable<Event[]> {
@@ -30,26 +41,20 @@ export class EventsService {
       // Add other fields as needed
     );
   }
- 
+
   addEvent(event: Event): Observable<string> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    const body = {
-      "name": event.name,
-      "date": event.date.toISOString(),
-      "location": event.location,
-      "attendees": event.attendees,
-      "description": event.description
-    };
-    return this.http.post(`${this.url}/addevent`, body, { headers }).pipe(
-      map(() => 'Event added'), 
+    const body = JSON.stringify(event);
+    return this.http.post<string>(`${this.url}/addevent`, body, { headers }).pipe(
+      map(() => 'Event added successfully'),
       catchError(error => this.errorHandling(error))
     );
   }
 
 
-public Events: Event[] = [];
+  public Events: Event[] = [];
 
-constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getEventsSynchronous(): Event[] {
     return this.Events;
@@ -67,18 +72,18 @@ constructor(private http: HttpClient) {}
     const allEvents = [...this.Events, ...localEvents];
     return of(allEvents);
   }
-/*
-  getEvents(): Observable<Event[]> {
-    const params = new HttpParams()
-      .set('dbName', 'test')
-      .set('collectionName', 'event');
-
-    return this.http.get<Event[]>(`${this.url}/getevents`, { params }).pipe(
-      map(jsonEvents => jsonEvents.map(jsonEvent => Event.clone(jsonEvent))),
-      catchError(error => this.errorHandling(error))
-    );
-  }
-*/
+  /*
+    getEvents(): Observable<Event[]> {
+      const params = new HttpParams()
+        .set('dbName', 'test')
+        .set('collectionName', 'event');
+  
+      return this.http.get<Event[]>(`${this.url}/getevents`, { params }).pipe(
+        map(jsonEvents => jsonEvents.map(jsonEvent => Event.clone(jsonEvent))),
+        catchError(error => this.errorHandling(error))
+      );
+    }
+  */
 
 
 
@@ -98,24 +103,24 @@ constructor(private http: HttpClient) {}
     return this.http.post(`${this.url}`, event);
   }
 
-
-  public deleteEvent(eventId: number): Observable<boolean> {
-    return this.http.delete(`${this.url}/${eventId}`).pipe(
-      map(() => true),
-      catchError(error => this.errorHandling(error)),
-      defaultIfEmpty(false) 
-    );
+  updateEvent(event: Event) {
+    // Implement the logic to update the event
+    // This might involve making a HTTP PUT request to your backend
   }
- 
-  errorHandling(httpError:any):Observable<never> {
+
+  deleteEvent(event: Event): Observable<boolean> {
+    return this.http.delete<boolean>(`${this.url}/deleteEvent/${event.id}`);
+  }
+
+  errorHandling(httpError: any): Observable<never> {
     if (httpError instanceof HttpErrorResponse) {
       if (httpError.status === 0) {
         return EMPTY;
       }
       if (httpError.status < 500) {
-        const errMessage = httpError.error.errorMessage 
-                              ? httpError.error.errorMessage
-                              : JSON.parse(httpError.error).errorMessage;
+        const errMessage = httpError.error.errorMessage
+          ? httpError.error.errorMessage
+          : JSON.parse(httpError.error).errorMessage;
         if ("unknown token" === errMessage) {
           console.log("Unknown token");
         }

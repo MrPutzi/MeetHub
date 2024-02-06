@@ -36,8 +36,8 @@ h2 {
   transition: all 0.3s ease-out;
 }
 
-.form-floating input:focus + label,
-.form-floating input:not(:placeholder-shown) + label {
+.form-floating input:focus+label,
+.form-floating input:not(:placeholder-shown)+label {
   transform: translateY(-25px) scale(0.8);
   background-color: #fff;
   padding: 5px;

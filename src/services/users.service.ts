@@ -4,13 +4,24 @@ import { BehaviorSubject, EMPTY, Observable, catchError, defaultIfEmpty, map, of
 import { Auth } from "../entities/auth";
 import { User } from "../entities/user";
 import { MessageService } from './message.service';
+import { Route, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
-export const DEFAULT_NAVIGATE_AFTER_LOGIN = "Dashboard";
+export const DEFAULT_NAVIGATE_AFTER_LOGIN = "/Dashboard";
+export const DEFAULT_REDIRECT_BEFORE_LOGIN = "/Login";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
+ 
+ 
+  
+  private getUsername(): string {
+    return localStorage.getItem('umUsername') || '';
+  }
+
+
   private restServerUrl: string = "http://localhost:8080/";
 
   private users: User[] = [
@@ -23,8 +34,9 @@ export class UsersService {
   navigateAfterLogin = DEFAULT_NAVIGATE_AFTER_LOGIN;
 
   constructor(private http: HttpClient, 
-              private messageService: MessageService) { }
-
+              private messageService: MessageService,
+              private dialog: MatDialog) {}
+              
   private get token(): string {
     return localStorage.getItem('umToken') || '';
   }
@@ -141,7 +153,11 @@ logout() {
     return !!this.token;
   }
 
-  errorHandling(httpError:any):Observable<never> {
+  // ...
+
+
+
+  errorHandling(httpError: any): Observable<never> {
     if (httpError instanceof HttpErrorResponse) {
       if (httpError.status === 0) {
         this.messageService.error("Server is not available. Try again later.");
@@ -155,6 +171,7 @@ logout() {
           this.logout();
         }
         this.messageService.error(errMessage);
+        this.openDialog(errMessage); // Open dialog with the error message
         return EMPTY;
       }
       if (httpError.status >= 500) {
@@ -165,6 +182,11 @@ logout() {
     console.error(httpError);
     return EMPTY;
   }
+
+  private openDialog(errorMessage: string): void {
+    alert(errorMessage);
+  }
+
 }
 
 

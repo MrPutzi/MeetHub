@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { EventsService } from '../../services/events.service';
 import { NgFor } from '@angular/common'; // Import NgFor directive
 import { Observable, map } from 'rxjs';
+import { UsersService } from '../../services/users.service';
+import { User } from '../../entities/user';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-events-dashboard',
@@ -13,16 +16,29 @@ import { Observable, map } from 'rxjs';
   styleUrl: './events-dashboard.component.css'
 })
 export class EventsDashboardComponent implements OnInit{
-  
-  events:Event[] = [];
-  actionWithEvent: string = 'new';
-  eventToEdit:Event = new Event(0, '', new Date(), '', []);
-  username ='admin';
 
-  constructor(private eventsService: EventsService, private router: Router) { }
+  onAttend(event: Event) {
+    const eventId = event.id.toString();
+    const username = this.username;
+    this.eventsService.attendEvent(eventId, username).subscribe(response => {
+      console.log(response); // Handle the response as needed
+    });
+  }
+
+
+  addAttendee(id: number, user: User) {
+    EventsService.addAttendee(id, user);
+  }
+
+  events: Event[] = [];
+  actionWithEvent: string = 'new';
+  eventToEdit: Event = new Event(0, '', new Date(), '', []);
+  username = '';
+
+  constructor(private eventsService: EventsService, private router: Router, private usersService: UsersService) { }
 
   ngOnInit() {
-      this.loadEvents();
+    this.loadEvents();
   }
 
   /*loadEvents(): Event[] {
@@ -47,14 +63,15 @@ onEdit(event: Event) {
   this.eventToEdit = event;
 }
 
-  onDelete(event: Event) {
-    const confirmation = confirm("Delete this task: " + event.name + "?");
-    if (confirmation) {
-      this.eventsService.deleteEvent(event.id!).subscribe(() => {
-        this.loadEvents();
+onDelete(event: Event) {
+  const confirmation = confirm("Delete this task: " + event.name + "?");
+  if (confirmation) {
+      this.eventsService.deleteEvent(event).subscribe(() => {
+          this.loadEvents();
       });
-    }
   }
+}
+
 
 
   onNew() {
