@@ -42,12 +42,12 @@ export class EventsDashboardComponent implements OnInit{
   }
 
   /*loadEvents(): Event[] {
-    
+
     this.eventsService.getLocalEvents().subscribe(events => {
       this.events = events;
-    
+
     });
-    
+
     return this.events;
   }
 */
@@ -58,10 +58,10 @@ loadEvents(){
   return this.events;
 }
 
-onEdit(event: Event) {
-  this.actionWithEvent = 'edit';
-  this.eventToEdit = event;
-}
+  onEdit(event: Event) {
+    this.eventsService.getEventForEditing();
+    this.router.navigateByUrl('./edit-event.component.html');
+  }
 
 onDelete(event: Event) {
   const confirmation = confirm("Delete this task: " + event.name + "?");

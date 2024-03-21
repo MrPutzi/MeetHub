@@ -1,19 +1,17 @@
-
 <form (ngSubmit)="onSubmit()" class="d-flex flex-column align-items-center">
-    <h2 class="h3 mb-3 fw-normal">Please sign in</h2>
-    <div class="form-floating mb-3">
-      <input type="text" [(ngModel)]="auth.username" name="login" class="form-control form-control-lg" />
-      <label for="floatingInput">Login name</label>
-    </div>
-    <div class="form-floating mb-3">
-      <input type="password" [(ngModel)]="auth.password" name="password" class="form-control form-control-lg" />
-      <label for="floatingPassword">Password</label>
-    </div>
-  
-    <button class="" type="submit">Sign in</button>
-</form>
+  <h2 class="h3 mb-3 fw-normal">Please sign in</h2>
+  <div class="form-floating mb-3">
+    <input id="floatingInput" type="text" [(ngModel)]="auth.username" name="login" class="form-control form-control-lg" />
+    <label for="floatingInput">Login name</label>
+  </div>
+  <div class="form-floating mb-3">
+    <input id="floatingPassword" type="password" [(ngModel)]="auth.password" name="password" class="form-control form-control-lg" />
+    <label for="floatingPassword">Password</label>
+  </div>
 
- <!-- <input type="text" class="form-control" id="floatingInput"[(ngModel)]="auth.name" name="name">  
+  <button class="" type="submit">Sign in</button>
+</form>
+ <!-- <input type="text" class="form-control" id="floatingInput"[(ngModel)]="auth.name" name="name">
       <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="auth.password" name="pass">
 
---> 
+-->

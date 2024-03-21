@@ -77,7 +77,7 @@ export class EventsService {
       const params = new HttpParams()
         .set('dbName', 'test')
         .set('collectionName', 'event');
-  
+
       return this.http.get<Event[]>(`${this.url}/getevents`, { params }).pipe(
         map(jsonEvents => jsonEvents.map(jsonEvent => Event.clone(jsonEvent))),
         catchError(error => this.errorHandling(error))
@@ -103,10 +103,7 @@ export class EventsService {
     return this.http.post(`${this.url}`, event);
   }
 
-  updateEvent(event: Event) {
-    // Implement the logic to update the event
-    // This might involve making a HTTP PUT request to your backend
-  }
+
 
   deleteEvent(event: Event): Observable<boolean> {
     return this.http.delete<boolean>(`${this.url}/deleteEvent/${event.id}`);
@@ -132,6 +129,18 @@ export class EventsService {
     }
     console.error(httpError);
     return EMPTY;
+  }
+
+  getEventForEditing(): Event {
+    // Provide default values for the Event constructor
+    return new Event(
+      0, // Default id
+      '', // Default name
+      new Date(), // Default date
+      '', // Default location
+      [], // Default attendees
+      '' // Default description
+    );
   }
 
 

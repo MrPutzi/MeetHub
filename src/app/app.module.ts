@@ -15,6 +15,7 @@ import { AuthGuard } from './auth.guard';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddEventComponent } from './add-event/add-event.component';
+import { EditEventComponent } from './edit-event/edit-event.component';
 
 
 
@@ -23,7 +24,8 @@ import { AddEventComponent } from './add-event/add-event.component';
     AppComponent,
     LoginComponent,
     NavbarComponent,
-    AddEventComponent
+    AddEventComponent,
+    EditEventComponent
   ],
   imports: [   
     AppRoutingModule,
