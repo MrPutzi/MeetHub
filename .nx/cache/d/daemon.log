@@ -1,0 +1,201 @@
+[NX Daemon Server] - 2024-03-21T14:06:06.509Z - Started listening on: \\.\pipe\nx\C:\Users\Lenovo\AppData\Local\Temp\87c187a8b6b78b220c36\d.sock
+[NX Daemon Server] - 2024-03-21T14:06:06.512Z - [WATCHER]: Subscribed to changes within: C:\Users\Lenovo\Desktop\Weby projekt\MeetHub (native)
+[NX Daemon Server] - 2024-03-21T14:06:06.518Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-03-21T14:06:06.520Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2024-03-21T14:06:06.521Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-03-21T14:06:06.523Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-03-21T14:06:06.524Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2024-03-21T14:06:06.524Z - [REQUEST]: 
+[NX Daemon Server] - 2024-03-21T14:06:06.524Z - [REQUEST]: 
+[NX Daemon Server] - 2024-03-21T14:06:06.633Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-03-21T14:06:06.636Z - Time taken for 'total for creating and serializing project graph' 110.52780000120401ms
+[NX Daemon Server] - 2024-03-21T14:06:06.637Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-03-21T14:06:06.637Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 111. Response time: 4.
+[NX Daemon Server] - 2024-03-21T14:06:06.640Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-03-21T14:12:33.459Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-03-21T14:12:41.622Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-03-21T14:12:41.763Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-03-22T06:30:44.565Z - Started listening on: \\.\pipe\nx\C:\Users\Lenovo\AppData\Local\Temp\87c187a8b6b78b220c36\d.sock
+[NX Daemon Server] - 2024-03-22T06:30:44.570Z - [WATCHER]: Subscribed to changes within: C:\Users\Lenovo\Desktop\Weby projekt\MeetHub (native)
+[NX Daemon Server] - 2024-03-22T06:30:44.572Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-03-22T06:30:44.574Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-03-22T06:30:44.577Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-03-22T06:30:44.580Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-03-22T06:30:44.582Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2024-03-22T06:30:44.582Z - [REQUEST]: 
+[NX Daemon Server] - 2024-03-22T06:30:44.582Z - [REQUEST]: 
+[NX Daemon Server] - 2024-03-22T06:30:44.745Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-03-22T06:30:44.748Z - Time taken for 'total for creating and serializing project graph' 165.64800000190735ms
+[NX Daemon Server] - 2024-03-22T06:30:44.749Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-03-22T06:30:44.749Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 166. Response time: 4.
+[NX Daemon Server] - 2024-03-22T06:30:44.754Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-03-22T06:30:55.587Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-03-22T06:55:28.666Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-03-22T06:55:28.869Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-03-22T09:30:44.844Z - There are 2 open connections. Reset inactivity timer.
+[NX Daemon Server] - 2024-04-17T08:21:15.991Z - Started listening on: \\.\pipe\nx\C:\Users\Lenovo\AppData\Local\Temp\87c187a8b6b78b220c36\d.sock
+[NX Daemon Server] - 2024-04-17T08:21:15.996Z - [WATCHER]: Subscribed to changes within: C:\Users\Lenovo\Desktop\Weby projekt\MeetHub (native)
+[NX Daemon Server] - 2024-04-17T08:21:16.002Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-04-17T08:21:16.004Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2024-04-17T08:21:16.005Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-04-17T08:21:16.007Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-04-17T08:21:16.009Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2024-04-17T08:21:16.009Z - [REQUEST]: 
+[NX Daemon Server] - 2024-04-17T08:21:16.009Z - [REQUEST]: 
+[NX Daemon Server] - 2024-04-17T08:21:16.143Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-04-17T08:21:16.145Z - Time taken for 'total for creating and serializing project graph' 135.1738000512123ms
+[NX Daemon Server] - 2024-04-17T08:21:16.145Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-04-17T08:21:16.145Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 135. Response time: 3.
+[NX Daemon Server] - 2024-04-17T08:21:16.148Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-04-17T08:21:30.141Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-04-17T08:22:05.889Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-04-17T08:28:07.154Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-04-17T08:31:34.624Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-04-17T08:31:34.625Z - [WATCHER]: Stopping the watcher for C:\Users\Lenovo\Desktop\Weby projekt\MeetHub (sources)
+[NX Daemon Server] - 2024-04-17T08:31:34.625Z - [WATCHER]: Stopping the watcher for C:\Users\Lenovo\Desktop\Weby projekt\MeetHub (outputs)
+[NX Daemon Server] - 2024-04-17T08:31:34.625Z - Server stopped because: "Lock file changed"
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+[NX Daemon Server] - 2024-05-15T17:24:51.346Z - Started listening on: \\.\pipe\nx\C:\Users\Lenovo\AppData\Local\Temp\87c187a8b6b78b220c36\d.sock
+[NX Daemon Server] - 2024-05-15T17:24:51.360Z - [WATCHER]: Subscribed to changes within: C:\Users\Lenovo\Desktop\Weby projekt\MeetHub (native)
+[NX Daemon Server] - 2024-05-15T17:24:51.362Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-05-15T17:24:51.364Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-05-15T17:24:51.369Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-05-15T17:24:51.372Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-05-15T17:24:51.375Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2024-05-15T17:24:51.376Z - [REQUEST]: 
+[NX Daemon Server] - 2024-05-15T17:24:51.376Z - [REQUEST]: 
+[NX Daemon Server] - 2024-05-15T17:24:51.589Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-05-15T17:24:51.592Z - Time taken for 'total for creating and serializing project graph' 217.39350003004074ms
+[NX Daemon Server] - 2024-05-15T17:24:51.593Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-05-15T17:24:51.593Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 217. Response time: 4.
+[NX Daemon Server] - 2024-05-15T17:24:51.597Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-05-15T17:25:08.194Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-05-15T17:25:38.346Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-05-15T17:25:38.494Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-05-15T17:25:38.548Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-05-15T17:25:38.600Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-05-15T17:25:40.404Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-05-15T17:25:43.437Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-05-15T17:30:07.289Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-05-15T17:40:08.801Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-05-15T17:40:08.831Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-05-15T17:40:09.203Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-05-15T17:40:09.203Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-05-15T17:40:09.203Z - [WATCHER]: Stopping the watcher for C:\Users\Lenovo\Desktop\Weby projekt\MeetHub (sources)
+[NX Daemon Server] - 2024-05-15T17:40:09.203Z - [WATCHER]: Stopping the watcher for C:\Users\Lenovo\Desktop\Weby projekt\MeetHub (sources)
+[NX Daemon Server] - 2024-05-15T17:40:09.203Z - [WATCHER]: Stopping the watcher for C:\Users\Lenovo\Desktop\Weby projekt\MeetHub (sources)
+[NX Daemon Server] - 2024-05-15T17:40:09.240Z - [WATCHER]: Stopping the watcher for C:\Users\Lenovo\Desktop\Weby projekt\MeetHub (outputs)
+[NX Daemon Server] - 2024-05-15T17:40:09.241Z - Server stopped because: "Lock file changed"
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+

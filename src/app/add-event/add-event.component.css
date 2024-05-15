@@ -1,3 +1,14 @@
+.container {
+  max-width: 600px; /* Adjust as needed */
+  margin: 0 auto; /* Centers the container */
+  padding: 20px; /* Adds some padding around the form */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Adds a slight shadow for a "card" effect */
+  margin-top: 250px;
+  border: black 1px solid;
+}
+
+/* Existing styles... */
+
 .form-row {
   margin-bottom: 1rem;
 }
