@@ -9,13 +9,13 @@ import { EditEventComponent } from './edit-event/edit-event.component';
 import {HomepageComponent} from "./homepage/homepage.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: '/LoggedIn', pathMatch: 'full' },
+  { path: '', redirectTo: '/Homepage', pathMatch: 'full' },
   { path: 'login', component: LoginComponent, pathMatch: 'full'  },
   { path: 'Dashboard', component: EventsDashboardComponent, canActivate: [AuthGuard]  },
   { path: 'AddEvent', component: AddEventComponent, canActivate: [AuthGuard] },
   { path: 'LoggedIn', component: LoggedInComponent, canActivate: [AuthGuard] },
     { path: 'edit-event/:id', component: EditEventComponent },
-  { path: 'Homepage', component: HomepageComponent, canActivate: [AuthGuard] }
+  { path: 'Homepage', component: HomepageComponent}
   ];
 @NgModule({
   declarations: [],

@@ -1,17 +1,18 @@
- <div class="card">
+ <div class="card" >
   <div *ngFor="let event of events" class="card-body">
       <h5 class="card-title">{{event.name}}</h5>
         <p class="card-text">Date: {{event.date}}</p>
         <p class="card-text">Location: {{event.location}}</p>
         <p class="card-text">Description: {{event.description}}</p>
+        <p class="card-text">Attendees: {{event.attendees}}</p>
+
         <div class="btn-group" style="height: 50px ;width: 100px;">
         <button type="button" class="btn btn-secondary btn-sm bi bi-pencil"
-        (click)="onAttend(event)" [id]="'attend-button-' + event.id">Attend</button>
-        <button type="button" class="btn btn-danger btn-sm bi bi-trash"
-        (click)="onDelete(event)" [id]="'delete-button-' + event.id">Delete</button>
-        <button type="button" class="btn btn-primary btn-sm bi bi-trash"
-        (click)="onEdit(event)" [id]="'edit-button-' + event.id">Edit</button>
+        (click)="onAttend(event)" [id]="'attend-button-' + this.event.id">Attend</button>
+        <button type="button" class="btn btn-danger btn-sm bi bi-person-fill-add"
+        (click)="onDelete(event )" [id]="'delete-button-' + this.event.id">Delete</button>
+        <button type="button" class="btn btn-primary btn-sm bi bi-pencil-fill"
+        (click)="onEdit(event.id)" [id]="'edit-button-' + this.event.id">Edit</button>
        </div>
-    </div>
   </div>
-  
+</div>

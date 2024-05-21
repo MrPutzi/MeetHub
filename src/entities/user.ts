@@ -8,7 +8,7 @@ export class User {
       user.id,
       user.lastLogin ? new Date(user.lastLogin) : undefined,
       user.password,
-      user.active === undefined ? true : user.active,
+      user.active ?? true,
     );
   }
 

@@ -14,10 +14,10 @@ export const DEFAULT_REDIRECT_BEFORE_LOGIN = "/Login";
   providedIn: 'root'
 })
 export class UsersService {
- 
- 
-  
-  private getUsername(): string {
+
+
+
+  getUsername(): string {
     return localStorage.getItem('umUsername') || '';
   }
 
@@ -25,18 +25,18 @@ export class UsersService {
   private restServerUrl: string = "http://localhost:8080/";
 
   private users: User[] = [
-    new User("MarekService","marek@jano.sk"), 
-    new User("JanoService","jano@jano.sk",1, new Date(), "tajne"), 
+    new User("MarekService","marek@jano.sk"),
+    new User("JanoService","jano@jano.sk",1, new Date(), "tajne"),
     new User("AdolfService","adolf@ss.de")
   ];
   private url = "http://localhost:8080/";
   private loggedUserSubject = new BehaviorSubject(this.username);
   navigateAfterLogin = DEFAULT_NAVIGATE_AFTER_LOGIN;
 
-  constructor(private http: HttpClient, 
+  constructor(private http: HttpClient,
               private messageService: MessageService,
               private dialog: MatDialog) {}
-              
+
   private get token(): string {
     return localStorage.getItem('umToken') || '';
   }
@@ -45,7 +45,7 @@ export class UsersService {
       localStorage.setItem('umToken', value);
     } else {
       localStorage.removeItem('umToken');
-    }   
+    }
   }
   private get username(): string {
     return localStorage.getItem('umUsername') || '';
@@ -56,7 +56,7 @@ export class UsersService {
     } else {
       localStorage.removeItem('umUsername');
     }
-    this.loggedUserSubject.next(value);   
+    this.loggedUserSubject.next(value);
   }
 
   public loggedUser(): Observable<string> {
@@ -95,12 +95,12 @@ export class UsersService {
     return this.http.delete(`${this.url}user/${userId}/${this.token}`).pipe(
       map(() => true),
       catchError(error => this.errorHandling(error)),
-      defaultIfEmpty(false) 
+      defaultIfEmpty(false)
     )
       //this.url+ 'user/'+ userId + '/' + this.token);
   }
 
- 
+
 
   public checkToken(): Observable<boolean> {
     if (!this.token)
@@ -147,7 +147,7 @@ logout() {
   this.messageService.success("User is logged out.");
 }
 
- 
+
 
   isLoggedIn() : boolean {
     return !!this.token;
@@ -164,7 +164,7 @@ logout() {
         return EMPTY;
       }
       if (httpError.status < 500) {
-        const errMessage = httpError.error.errorMessage 
+        const errMessage = httpError.error.errorMessage
                               ? httpError.error.errorMessage
                               : JSON.parse(httpError.error).errorMessage;
         if ("unknown token" === errMessage) {

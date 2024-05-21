@@ -8,19 +8,21 @@ import { UsersService } from '../../services/users.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit{
-  
+
   username = '';
   constructor(private usersService: UsersService, private router: Router){}
 
   ngOnInit(): void {
    this.usersService.loggedUser().subscribe(username => {
     this.username = username;
-   }); 
+   });
   }
 
   logout() {
     this.usersService.logout();
     this.router.navigateByUrl('/');
   }
+
+  protected readonly Animation = Animation;
 }
 

@@ -2,35 +2,39 @@
   "version": "6.0",
   "nxVersion": "18.1.2",
   "deps": {
-    "@angular/animations": "^17.0.0",
+    "@angular/animations": "^17.1.2",
     "@angular/cdk": "~17.0.3",
-    "@angular/common": "^17.0.0",
-    "@angular/compiler": "^17.0.0",
-    "@angular/core": "^17.0.0",
-    "@angular/forms": "^17.0.6",
+    "@angular/common": "^17.1.2",
+    "@angular/compiler": "^17.1.2",
+    "@angular/core": "^17.1.2",
+    "@angular/forms": "^17.1.2",
     "@angular/material": "~17.0.3",
-    "@angular/platform-browser": "^17.0.0",
-    "@angular/platform-browser-dynamic": "^17.0.0",
-    "@angular/router": "^17.0.0",
+    "@angular/platform-browser": "^17.1.2",
+    "@angular/platform-browser-dynamic": "^17.1.2",
+    "@angular/router": "^17.1.2",
+    "@nrwl/angular": "^18.1.2",
     "bootstrap": "^5.3.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2",
-    "@angular-devkit/build-angular": "^17.0.3",
-    "@angular/cli": "^17.0.3",
-    "@angular/compiler-cli": "^17.0.0",
+    "@angular-devkit/build-angular": "^17.1.2",
+    "@angular/cli": "^17.1.2",
+    "@angular/compiler-cli": "^17.1.2",
     "@types/jasmine": "~5.1.0",
+    "browser-sync": "^3.0.2",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "tailwindcss": "^3.4.3",
     "typescript": "~5.2.2"
   },
   "pathMappings": {},
   "nxJsonPlugins": [],
   "fileMap": {
+    "nonProjectFiles": [],
     "projectFileMap": {
       "MeetHub": [
         {
@@ -43,31 +47,35 @@
         },
         {
           "file": ".vscode/extensions.json",
-          "hash": "11934160580685414355"
+          "hash": "12168638410418168064"
         },
         {
           "file": ".vscode/launch.json",
-          "hash": "17406702432687230417"
+          "hash": "10707602299259707493"
         },
         {
           "file": ".vscode/tasks.json",
-          "hash": "10093397977228577162"
+          "hash": "7211953684996181004"
         },
         {
           "file": "README.md",
-          "hash": "8029446951383648112"
+          "hash": "8334417284758641143"
         },
         {
           "file": "angular.json",
           "hash": "2001318030332934258"
         },
         {
+          "file": "demo.jar",
+          "hash": "17950393744659320557"
+        },
+        {
           "file": "package-lock.json",
-          "hash": "4892894393678094482"
+          "hash": "1388347497187610305"
         },
         {
           "file": "package.json",
-          "hash": "3534604041921020111",
+          "hash": "15387987452935020723",
           "deps": [
             "npm:@angular/animations",
             "npm:@angular/cdk",
@@ -79,6 +87,7 @@
             "npm:@angular/platform-browser",
             "npm:@angular/platform-browser-dynamic",
             "npm:@angular/router",
+            "npm:@nrwl/angular",
             "npm:bootstrap",
             "npm:rxjs",
             "npm:tslib",
@@ -87,22 +96,24 @@
             "npm:@angular/cli",
             "npm:@angular/compiler-cli",
             "npm:@types/jasmine",
+            "npm:browser-sync",
             "npm:jasmine-core",
             "npm:karma",
             "npm:karma-chrome-launcher",
             "npm:karma-coverage",
             "npm:karma-jasmine",
             "npm:karma-jasmine-html-reporter",
+            "npm:tailwindcss",
             "npm:typescript"
           ]
         },
         {
           "file": "src/app/add-event/add-event.component.css",
-          "hash": "3244421341483603138"
+          "hash": "11687558391409755746"
         },
         {
           "file": "src/app/add-event/add-event.component.html",
-          "hash": "4980388994589238298"
+          "hash": "8367499034270693939"
         },
         {
           "file": "src/app/add-event/add-event.component.spec.ts",
@@ -113,19 +124,30 @@
         },
         {
           "file": "src/app/add-event/add-event.component.ts",
-          "hash": "59514821331760750"
+          "hash": "1029066728001140812",
+          "deps": [
+            "npm:@angular/cdk",
+            "npm:@angular/core",
+            "npm:@angular/forms",
+            "npm:rxjs",
+            "npm:@angular/common"
+          ]
         },
         {
           "file": "src/app/app-routing.module.ts",
-          "hash": "2274365462433274643"
+          "hash": "6180226838392978574",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/router"
+          ]
         },
         {
           "file": "src/app/app.component.css",
-          "hash": "4747590841083510413"
+          "hash": "12640439863765970625"
         },
         {
           "file": "src/app/app.component.html",
-          "hash": "3240167892407579085"
+          "hash": "5806167885828740121"
         },
         {
           "file": "src/app/app.component.spec.ts",
@@ -145,7 +167,13 @@
         },
         {
           "file": "src/app/app.module.ts",
-          "hash": "6438787468616282934"
+          "hash": "6450788210954715288",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/platform-browser",
+            "npm:@angular/common",
+            "npm:@angular/forms"
+          ]
         },
         {
           "file": "src/app/auth.guard.spec.ts",
@@ -157,15 +185,43 @@
         },
         {
           "file": "src/app/auth.guard.ts",
-          "hash": "4498554572272556261"
+          "hash": "1089476922788535342",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/router",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "src/app/edit-event/edit-event.component.css",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "src/app/edit-event/edit-event.component.html",
+          "hash": "16531897426159261435"
+        },
+        {
+          "file": "src/app/edit-event/edit-event.component.spec.ts",
+          "hash": "8762473394798001751",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "src/app/edit-event/edit-event.component.ts",
+          "hash": "17713686332885287376",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/forms"
+          ]
         },
         {
           "file": "src/app/events-dashboard/events-dashboard.component.css",
-          "hash": "16408349017802870493"
+          "hash": "1861852081590859595"
         },
         {
           "file": "src/app/events-dashboard/events-dashboard.component.html",
-          "hash": "16575663212535128477"
+          "hash": "3386394135147372466"
         },
         {
           "file": "src/app/events-dashboard/events-dashboard.component.spec.ts",
@@ -176,15 +232,44 @@
         },
         {
           "file": "src/app/events-dashboard/events-dashboard.component.ts",
-          "hash": "9399532894621804537"
+          "hash": "412928302400848789",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/router",
+            "npm:@angular/common",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "src/app/homepage/homepage.component.css",
+          "hash": "17420131286952158248"
+        },
+        {
+          "file": "src/app/homepage/homepage.component.html",
+          "hash": "8358380153984284791"
+        },
+        {
+          "file": "src/app/homepage/homepage.component.spec.ts",
+          "hash": "16260972917297837000",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "src/app/homepage/homepage.component.ts",
+          "hash": "2818317059476852036",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/router"
+          ]
         },
         {
           "file": "src/app/logged-in/logged-in.component.css",
-          "hash": "3244421341483603138"
+          "hash": "17155772209776990287"
         },
         {
           "file": "src/app/logged-in/logged-in.component.html",
-          "hash": "7526988780466222133"
+          "hash": "12836843942882531081"
         },
         {
           "file": "src/app/logged-in/logged-in.component.spec.ts",
@@ -195,15 +280,19 @@
         },
         {
           "file": "src/app/logged-in/logged-in.component.ts",
-          "hash": "11826152835567690590"
+          "hash": "5292973144141161187",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/router"
+          ]
         },
         {
           "file": "src/app/login/login.component.css",
-          "hash": "324157547633004283"
+          "hash": "8336553368662601010"
         },
         {
           "file": "src/app/login/login.component.html",
-          "hash": "10298092715233843658"
+          "hash": "10402033501360764339"
         },
         {
           "file": "src/app/login/login.component.spec.ts",
@@ -222,11 +311,11 @@
         },
         {
           "file": "src/app/navbar/navbar.component.css",
-          "hash": "8709452135544805651"
+          "hash": "451652163563573324"
         },
         {
           "file": "src/app/navbar/navbar.component.html",
-          "hash": "5608963445846839345"
+          "hash": "7608250783449639641"
         },
         {
           "file": "src/app/navbar/navbar.component.spec.ts",
@@ -237,7 +326,7 @@
         },
         {
           "file": "src/app/navbar/navbar.component.ts",
-          "hash": "7908326115122220973",
+          "hash": "4367010143679896489",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/router"
@@ -253,11 +342,11 @@
         },
         {
           "file": "src/entities/event.ts",
-          "hash": "9320976737739936094"
+          "hash": "10987231404265703302"
         },
         {
           "file": "src/entities/user.ts",
-          "hash": "2810882242672106332"
+          "hash": "12136887516021880867"
         },
         {
           "file": "src/favicon.ico",
@@ -265,7 +354,7 @@
         },
         {
           "file": "src/index.html",
-          "hash": "13372046322522412969"
+          "hash": "15534500986517220370"
         },
         {
           "file": "src/main.ts",
@@ -283,7 +372,13 @@
         },
         {
           "file": "src/services/events.service.ts",
-          "hash": "9837536293141735920"
+          "hash": "10318770925982282601",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:rxjs",
+            "npm:@angular/cdk"
+          ]
         },
         {
           "file": "src/services/message.service.spec.ts",
@@ -294,7 +389,11 @@
         },
         {
           "file": "src/services/message.service.ts",
-          "hash": "8137694991375726720"
+          "hash": "14572013152115618921",
+          "deps": [
+            "npm:@angular/core",
+            "npm:rxjs"
+          ]
         },
         {
           "file": "src/services/users.service.spec.ts",
@@ -305,11 +404,22 @@
         },
         {
           "file": "src/services/users.service.ts",
-          "hash": "1104852693712724429"
+          "hash": "14953302528168060426",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:rxjs",
+            "npm:@angular/router",
+            "npm:@angular/material"
+          ]
         },
         {
           "file": "src/styles.css",
-          "hash": "3023802603553543677"
+          "hash": "16946849300953265337"
+        },
+        {
+          "file": "tailwind.config.js",
+          "hash": "17575061069069584"
         },
         {
           "file": "tsconfig.app.json",
@@ -324,7 +434,6 @@
           "hash": "15575553540147145788"
         }
       ]
-    },
-    "nonProjectFiles": []
+    }
   }
 }
