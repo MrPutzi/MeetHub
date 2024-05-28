@@ -1,86 +1,54 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EventsService } from '../../services/events.service';
-import Event from '../../entities/event';
-import {User} from "../../entities/user";
 
 @Component({
   selector: 'app-edit-event',
   templateUrl: './edit-event.component.html',
   styleUrls: ['./edit-event.component.css']
 })
-export class EditEventComponent implements OnInit, OnChanges {
-  @Input({ required: true }) user!: User;
-  @Input() actionWithUser: string = 'new';
-  @Output('changed') eventPipe = new EventEmitter<User>();
+export class EditEventComponent implements OnInit {
+  eventForm!: FormGroup;
+  eventId!: string;
 
+  constructor(
+    private fb: FormBuilder,
+    private eventService: EventsService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {  this.eventForm = this.fb.group({
+    name: ['', Validators.required],
+    description: ['', Validators.required],
+    date: [new Date(), Validators.required],
+    location: ['', Validators.required],
+    attendees: ['', Validators.required],
+    category: ['', Validators.required]
+  });}
 
-
-
-
-  set currentEvent(value: Event) {
-    this._currentEvent = value;
-  }
-
-  eventForm = new FormGroup({
-    name: new FormControl('', Validators.required),
-    date: new FormControl('', Validators.required),
-    location: new FormControl('', Validators.required),
-    description: new FormControl('', Validators.required)
-  });
-
-  private _currentEvent: Event = new Event(
-    0, // Default id
-    '', // Default name
-    new Date(), // Default date
-    '', // Default location
-    [], // Default attendees
-    '' // Default description
-  );
-
-  constructor(private eventsService: EventsService) { }
-
-  ngOnInit(): void {
-    this.eventForm.valueChanges.subscribe(() => {
-      console.log('Formulár bol zmenený');
+  ngOnInit() {
+    this.eventId = this.route.snapshot.paramMap.get('id') || '';
+    this.eventService.getEvents().subscribe((event: any) => {
+      this.eventForm = this.fb.group({
+        name: [event.name, Validators.required],
+        date: [new Date(event.date).toISOString().slice(0, 16), Validators.required],
+        location: [event.location, Validators.required],
+        attendees: [event.attendees.join(', ')],
+        description: [event.description]
+      });
     });
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.user = User.clone(this.user);
-    if (this.actionWithUser === 'edit') {
-      this.eventForm.patchValue({
-        date: undefined, description: undefined, location: undefined,
-        name: this.user.name
-      });
-      this.eventForm.disable();
-    }
-  }
-
-
   onSubmit() {
     if (this.eventForm.valid) {
-      const updatedEvent = new Event(
-        this._currentEvent.id,
-        this.eventForm.value.name ?? '',
-        new Date(this.eventForm.value.date ?? ''),
-        this.eventForm.value.location ?? '',
-        this._currentEvent.attendees,
-        this.eventForm.value.description ?? ''
-      );
-
-      this.eventsService.editEvent(updatedEvent)
-        .subscribe(() => {
-          console.log('Udalosť úspešne aktualizovaná!');
-        }, error => {
-          console.error('Chyba pri aktualizácii:', error);
-        });
-    } else {
-      console.log('Formulár je nesprávny!');
+      const updatedEvent = {
+        ...this.eventForm.value,
+        attendees: this.eventForm.value.attendees.split(',').map((attendee: string) => attendee.trim()),
+        date: new Date(this.eventForm.value.date)
+      };
+      this.eventService.updateEvent(this.eventId, updatedEvent).subscribe(() => {
+        this.router.navigate(['/events']);
+      });
     }
-  }
-
-  onCancel() {
-    console.log('Úpravy zrušené');
   }
 }

@@ -73,22 +73,27 @@ export class EventsDashboardComponent implements OnInit {
   //   });
   // }
 
-onDelete(eventId: Event) {
-  this.eventsService.deleteEvent(eventId.id).subscribe(() => {
-    console.log(`Event with ID ${eventId.id} deleted!`);
-    this.loadEvents();
-  });
+  onDelete(event: Event) {
+    this.eventsService.deleteEvent(event.id.toString()).subscribe(response => {
+      console.log(response); // Handle the response as needed
+      this.loadEvents(); // Refresh the event list after deleting
+    });
 
 
 }
-  onAttend(event: Event) {
-    this.eventsService.attendEvent(event.id.toString(), this.username).subscribe(response => {
-      console.log(response); // Handle the response as needed
-      this.loadEvents(); // Refresh the event list after attending
-    });
+
+  onAttend(eventId: Event, username: MouseEvent) {
+    this.eventsService.attendEvent(eventId, username).subscribe(
+      () => {
+        console.log('User attended the event');
+      },
+      (error) => {
+        console.error('Error attending the event:', error);
+      }
+    );
   }
 
-//add a function that will check if the user is in the attendees list
+
 
 
 }

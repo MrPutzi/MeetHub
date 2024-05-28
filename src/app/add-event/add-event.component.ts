@@ -22,7 +22,6 @@ submitForm() {
 }
   eventForm!: FormGroup;
   eventOrganizer: string = this.usersService.getUsersUsername();
-  eventCategory!: string; // Add this line
   eventAttendees!: string; // Add this line
   eventDate!: Date; // Add this line
   eventDescription!: string; // Add this line
@@ -46,7 +45,6 @@ editTask: any;
       date: [new Date(), Validators.required], // Fix: Convert the string value to a Date object
       location: ['', Validators.required],
       attendees: ['', Validators.required],
-      category: ['', Validators.required]
     });
   }
 
