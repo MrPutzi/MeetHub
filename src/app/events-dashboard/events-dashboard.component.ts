@@ -5,6 +5,7 @@ import { EventsService } from '../../services/events.service';
 import {NgFor, NgIf} from '@angular/common'; // Import NgFor directive
 import { Observable, map } from 'rxjs';
 import { UsersService } from '../../services/users.service';
+import {AuthGuard} from "../auth.guard";
 
 @Component({
   selector: 'app-events-dashboard',
@@ -14,17 +15,22 @@ import { UsersService } from '../../services/users.service';
   styleUrl: './events-dashboard.component.css'
 })
 export class EventsDashboardComponent implements OnInit {
+  @Input() eventId!: string;
+  @Input() userId!: string;
 
-
+  attendingEvents: Set<string> = new Set;
   events: Event[] = [];
   selectedEvent?: Event;
   action: string = 'edit';
   actionWithEvent: string = 'new';
-  eventToEdit: Event = new Event(0, '', new Date(), '', []);
   username = '';
 
-  constructor(private eventsService: EventsService, private router: Router, private usersService: UsersService) {
-  }
+  constructor(private eventsService: EventsService,
+              private router: Router,
+              private usersService: UsersService,
+              private authService: AuthGuard){
+               this.userId = this.usersService.getUserId();
+}
 
   ngOnInit() {
     this.loadEvents();
@@ -55,15 +61,27 @@ export class EventsDashboardComponent implements OnInit {
     return this.events;
   }
 */
+  // loadEvents() {
+  //   this.eventsService.getEvents().subscribe(events => {
+  //     this.events = events;
+  //   });
+  //   return this.events;
+  // }
   loadEvents() {
-    this.eventsService.getEvents().subscribe(events => {
-      this.events = events;
+    // Load your events from the backend and then check if the user is attending each event
+    // For simplicity, let's assume you have a method to load events
+    this.eventsService.getEvents(); // Replace with actual call to load events
+    this.events.forEach(event => {
+      this.eventsService.isUserAttending(event, this.userId).subscribe(isAttending => {
+        if (isAttending) {
+          this.attendingEvents.add(String(event.id));
+        }
+      });
     });
-    return this.events;
   }
 
   onEdit(eventId: number) {
-    this.router.navigateByUrl('/edit-event/' + eventId);
+    this.router.navigate(['/edit-event', eventId]);
   }
 
   // onDelete(eventId: number) {
@@ -76,24 +94,41 @@ export class EventsDashboardComponent implements OnInit {
   onDelete(event: Event) {
     this.eventsService.deleteEvent(event.id.toString()).subscribe(response => {
       console.log(response); // Handle the response as needed
-      this.loadEvents(); // Refresh the event list after deleting
+      //wait few seconds before refreshing the event list
+      setTimeout(() => {
+        this.loadEvents();
+      }, 1000);
     });
 
 
 }
 
-  onAttend(eventId: Event, username: MouseEvent) {
-    this.eventsService.attendEvent(eventId, username).subscribe(
-      () => {
-        console.log('User attended the event');
+  attendEvent(eventId: string, userId: string): void {
+    this.eventsService.attendEvent(eventId, userId).subscribe({
+      next: (response) => {
+        console.log('User added to event successfully', response);
       },
-      (error) => {
-        console.error('Error attending the event:', error);
+      error: (error) => {
+        console.error('Error adding user to event', error);
       }
-    );
+    });
+}
+
+  deleteUserFromEvent(eventId: string, userId: string): void {
+    this.eventsService.deleteUserFromEvent(eventId, userId).subscribe({
+      next: () => {
+        console.log('User deleted from event successfully');
+      },
+      error: (error) => {
+        console.error('Error deleting user from event', error);
+      }
+    });
   }
 
 
+  isUserAttending(eventId: Event): Observable<boolean> {
+    return this.eventsService.isUserAttending(eventId, this.userId);
+  }
 
-
+  protected readonly String = String;
 }

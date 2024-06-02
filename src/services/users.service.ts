@@ -15,7 +15,9 @@ export const DEFAULT_REDIRECT_BEFORE_LOGIN = "/Login";
 })
 export class UsersService {
 
-
+  getUserId(): string {
+    return localStorage.getItem('umUserId') || '';
+  }
 
   getUsername(): string {
     return localStorage.getItem('umUsername') || '';

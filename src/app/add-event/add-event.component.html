@@ -1,15 +1,19 @@
-<div class="container">
-<form (ngSubmit)="submitForm()" [formGroup]="eventForm">
-    <label for="name">Event Name:</label><br>
-    <input type="text" id="name" formControlName="name"><br>
-    <label for="date">Event Date (dd-MM-yyyy HH:mm:ss):</label><br>
-    <input type="text" id="date" formControlName="date"><br>
-    <label for="location">Event Location:</label><br>
-    <input type="text" id="location" formControlName="location"><br>
-    <label for="attendees">Event Attendees (one per line):</label><br>
-    <textarea id="attendees" formControlName="attendees"></textarea><br>
-    <label for="description">Event Description:</label><br>
-    <textarea id="description" formControlName="description"></textarea><br>
-    <input type="submit" value="Submit">
+<form [formGroup]="addEventForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Name:</label>
+    <input id="name" formControlName="name">
+  </div>
+  <div>
+    <label for="date">Date:</label>
+    <input id="date" type="datetime-local" formControlName="date">
+  </div>
+  <div>
+    <label for="location">Location:</label>
+    <input id="location" formControlName="location">
+  </div>
+  <div>
+    <label for="description">Description:</label>
+    <textarea id="description" formControlName="description"></textarea>
+  </div>
+  <button type="submit">Add Event</button>
 </form>
-</div>

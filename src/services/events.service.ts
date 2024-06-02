@@ -10,71 +10,48 @@ import Event from '../entities/event';
 export class EventsService {
   private eventsUrl = 'http://localhost:8080';  // URL to web api
   private apiUrl = 'http://localhost:8080/api/events';
+  private usersOnEventsUrl = 'http://localhost:8080/users-on-events'
 
   constructor(private http: HttpClient) { }
 
-  // getEvents(): Observable<Event[]> {
-  //   return this.http.get<Event[]>(this.eventsUrl + '/getevents')
-  //     .pipe(
-  //       map(response => response.map(this.convertDocumentToEvent)),
-  //       catchError(this.handleError)
-  //     );
-  // }
+
 
   getEvents(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}`);
   }
-   createEvent(event: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}`, event);
+
+
+  getEventById(eventId: string): Observable<any> {
+    const url = `${this.apiUrl}/${eventId}`;
+    return this.http.get<any>(url);
   }
 
-  updateEvent(id: string, event: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/${id}`, event);
+  updateEvent(eventId: string, event: any): Observable<any> {
+    const url = `${this.apiUrl}/update/${eventId}`;
+    return this.http.put<any>(url, event);
+  }
+
+  addEvent(event: any): Observable<any> {
+    const url = `${this.apiUrl}/add`;
+    return this.http.post<any>(url, event);
   }
 
   deleteEvent(id: string): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+    return this.http.delete<any>(`${this.apiUrl}/delete/${id}`);
   }
 
 
-  attendEvent(eventId: Event, username: MouseEvent): Observable<any> {
-    const url = `${this.apiUrl}/${eventId}/attend`;
-    const body = { username };
-    return this.http.post(url, body);
+  attendEvent(eventId: string, userId: string): Observable<any> {
+    const url = `${this.usersOnEventsUrl}/add/${eventId}/${userId}`;
+    return this.http.post(url, {});
   }
-  // deleteEvent(eventId: number): Observable<Event> {
-  //   const url = `${this.eventsUrl}/deleteEvent/${eventId}`;
-  //   return this.http.delete<Event>(url)
-  //     .pipe(
-  //       map(response => {
-  //         if (response) {
-  //           return this.convertDocumentToEvent(response);
-  //         } else {
-  //           console.error(`Event with ID ${eventId} not found`);
-  //           return new Event(Number(''), '', new Date(), '', [], '');
-  //         }
-  //       }),
-  //       catchError(this.handleError)
-  //     );
-  // }
 
-  // deleteEvent(eventId: number): Observable<any> {
-  //   const url = `${this.eventsUrl}/deleteEvent/${eventId}`;
-  //   return this.http.delete(url)
-  //     .pipe(catchError(this.handleError));
-  // }
+  deleteUserFromEvent(eventId: string, userId: string): Observable<void> {
+    const url = `${this.usersOnEventsUrl}/delete/${eventId}/${userId}`;
+    return this.http.delete<void>(url);
+    }
 
 
-  // editEvent(event: Event): Observable<any> {
-  //   return this.http.put(this.eventsUrl, event)
-  //     .pipe(catchError(this.handleError));
-  // }
-  //
-  // attendEvent(event: string, username: string): Observable<any> {
-  //   const url = `${this.eventsUrl}/${event}/attend`;
-  //   return this.http.post(url, { username })
-  //     .pipe(catchError(this.handleError));
-  // }
 
   private handleError(error: any): Observable<any> {
     console.error('An error occurred:', error);
@@ -88,13 +65,18 @@ export class EventsService {
         document.name,
         document.date,
         document.location,
-        document.attendees,
         document.description
       );
     } else {
       console.error('Document is null');
       // Return a default Event object instead of null
-      return new Event(Number(''), '', new Date(), '', [], '');
+      return new Event(Number(''), '', new Date(), '',  '');
     }
+  }
+
+
+  isUserAttending(eventId: Event, userId: string): Observable<boolean> {
+    const url = `${this.usersOnEventsUrl}/is-user-attending/${eventId}/${userId}`;
+    return this.http.get<boolean>(url);
   }
 }

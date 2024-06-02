@@ -4,11 +4,15 @@
         <p class="card-text">Date: {{event.date}}</p>
         <p class="card-text">Location: {{event.location}}</p>
         <p class="card-text">Description: {{event.description}}</p>
-        <p class="card-text">Attendees: {{event.attendees}}</p>
-
         <div class="btn-group" style="height: 50px ;width: 100px;">
-        <button type="button" class="btn btn-secondary btn-sm bi bi-pencil"
-        (click)="onAttend(event, $event)" [id]="'attend-button-' + event.id">Attend</button>
+<!--          <button *ngIf="!isUserAttending(event)" type="button" class="btn btn-secondary btn-sm bi bi-pencil"-->
+<!--                  (click)="attendEvent(event.id.toString(), userId)" [id]="'attend-button-' + event.id">Attend</button>-->
+
+<!--          <button *ngIf="isUserAttending(event)" type="button" class="btn btn-danger btn-sm bi bi-person-fill-add"-->
+<!--                  (click)="deleteUserFromEvent(event.id.toString(), userId)" [id]="'unattend-button-' + event.id">Unattend</button>-->
+
+          <button *ngIf="!isUserAttending(event)" (click)="attendEvent(event.id.toString(), userId)">Attend</button>
+          <button *ngIf="isUserAttending(event)" (click) = "deleteUserFromEvent(event.id.toString(), userId)">Unattend</button>
         <button type="button" class="btn btn-danger btn-sm bi bi-person-fill-add"
         (click)="onDelete(event)" [id]="'delete-button-' + event.id">Delete</button>
         <button type="button" class="btn btn-primary btn-sm bi bi-pencil-fill"

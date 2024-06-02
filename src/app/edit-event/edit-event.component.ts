@@ -9,7 +9,7 @@ import { EventsService } from '../../services/events.service';
   styleUrls: ['./edit-event.component.css']
 })
 export class EditEventComponent implements OnInit {
-  eventForm!: FormGroup;
+  eventForm: FormGroup;
   eventId!: string;
 
   constructor(
@@ -17,37 +17,30 @@ export class EditEventComponent implements OnInit {
     private eventService: EventsService,
     private route: ActivatedRoute,
     private router: Router
-  ) {  this.eventForm = this.fb.group({
-    name: ['', Validators.required],
-    description: ['', Validators.required],
-    date: [new Date(), Validators.required],
-    location: ['', Validators.required],
-    attendees: ['', Validators.required],
-    category: ['', Validators.required]
-  });}
+  ) {
+    this.eventForm = this.fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      date: ['', Validators.required], // Adjusted to handle date format
+      location: ['', Validators.required],
+    });
+  }
+  ngOnInit(): void {
+    this.eventId = <string>this.route.snapshot.paramMap.get('id');
+    this.loadEvent();
+  }
 
-  ngOnInit() {
-    this.eventId = this.route.snapshot.paramMap.get('id') || '';
-    this.eventService.getEvents().subscribe((event: any) => {
-      this.eventForm = this.fb.group({
-        name: [event.name, Validators.required],
-        date: [new Date(event.date).toISOString().slice(0, 16), Validators.required],
-        location: [event.location, Validators.required],
-        attendees: [event.attendees.join(', ')],
-        description: [event.description]
-      });
+  loadEvent(): void {
+    this.eventService.getEventById(this.eventId).subscribe(event => {
+      event.date = new Date(event.date).toISOString().slice(0, 16); // Ensure date format is compatible
+      this.eventForm.patchValue(event);
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.eventForm.valid) {
-      const updatedEvent = {
-        ...this.eventForm.value,
-        attendees: this.eventForm.value.attendees.split(',').map((attendee: string) => attendee.trim()),
-        date: new Date(this.eventForm.value.date)
-      };
-      this.eventService.updateEvent(this.eventId, updatedEvent).subscribe(() => {
-        this.router.navigate(['/events']);
+      this.eventService.updateEvent(this.eventId, this.eventForm.value).subscribe(() => {
+        this.router.navigate(['/Dashboard']);
       });
     }
   }
