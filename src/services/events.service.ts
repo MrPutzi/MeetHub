@@ -75,8 +75,8 @@ export class EventsService {
   }
 
 
-  isUserAttending(eventId: Event, userId: string): Observable<boolean> {
-    const url = `${this.usersOnEventsUrl}/is-user-attending/${eventId}/${userId}`;
+  isUserAttending(event: Event, userId: string): Observable<boolean> {
+    const url = `${this.usersOnEventsUrl}/is-user-attending/${event.id}/${userId}`;
     return this.http.get<boolean>(url);
   }
 }

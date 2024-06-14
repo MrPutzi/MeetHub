@@ -14,9 +14,12 @@ export const DEFAULT_REDIRECT_BEFORE_LOGIN = "/Login";
   providedIn: 'root'
 })
 export class UsersService {
+    static getUsersId() {
+        throw new Error('Method not implemented.');
+    }
 
   getUserId(): string {
-    return localStorage.getItem('umUserId') || '';
+    return localStorage.getItem('umToken') || '';
   }
 
   getUsername(): string {
@@ -60,6 +63,10 @@ export class UsersService {
     }
     this.loggedUserSubject.next(value);
   }
+
+  public getUsersId(): string {
+    return this.username;
+    }
 
   public loggedUser(): Observable<string> {
     return this.loggedUserSubject.asObservable();

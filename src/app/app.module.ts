@@ -16,6 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddEventComponent } from './add-event/add-event.component';
 import { EditEventComponent } from './edit-event/edit-event.component';
 import {HomepageComponent} from "./homepage/homepage.component";
+import {MessagingComponent} from "./messaging/messaging.component";
 
 
 
@@ -27,18 +28,19 @@ import {HomepageComponent} from "./homepage/homepage.component";
     AddEventComponent,
     EditEventComponent
   ],
-  imports: [
-    AppRoutingModule,
-    BrowserModule,
-    NgbModule,
-    CommonModule,
-    HttpClientModule,
-    FormsModule,
-    EventsDashboardComponent,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    HomepageComponent,
-  ],
+    imports: [
+        AppRoutingModule,
+        BrowserModule,
+        NgbModule,
+        CommonModule,
+        HttpClientModule,
+        FormsModule,
+        EventsDashboardComponent,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        HomepageComponent,
+        MessagingComponent,
+    ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
 })

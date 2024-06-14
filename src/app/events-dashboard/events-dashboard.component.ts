@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import Event from '../../entities/event';
 import { Router } from '@angular/router';
 import { EventsService } from '../../services/events.service';
-import {NgFor, NgIf} from '@angular/common'; // Import NgFor directive
+import {DatePipe, NgFor, NgIf} from '@angular/common'; // Import NgFor directive
 import { Observable, map } from 'rxjs';
 import { UsersService } from '../../services/users.service';
 import {AuthGuard} from "../auth.guard";
@@ -10,14 +10,13 @@ import {AuthGuard} from "../auth.guard";
 @Component({
   selector: 'app-events-dashboard',
   standalone: true,
-  imports: [NgFor, NgIf],
+  imports: [NgFor, NgIf, DatePipe],
   templateUrl: './events-dashboard.component.html',
   styleUrl: './events-dashboard.component.css'
 })
 export class EventsDashboardComponent implements OnInit {
-  @Input() eventId!: string;
-  @Input() userId!: string;
 
+  userId: string = '';
   attendingEvents: Set<string> = new Set;
   events: Event[] = [];
   selectedEvent?: Event;
@@ -29,15 +28,15 @@ export class EventsDashboardComponent implements OnInit {
               private router: Router,
               private usersService: UsersService,
               private authService: AuthGuard){
-               this.userId = this.usersService.getUserId();
-}
+  }
 
   ngOnInit() {
+    this.userId = this.usersService.getUserId();
     this.loadEvents();
     this.username = this.usersService.getUsername();
     let events$: Observable<Event[]> = this.eventsService.getEvents();
     events$.subscribe({
-      next: (events) => {
+      next: (events: Event[]) => {
         this.events = events;
       },
       error: (error) => {
@@ -49,6 +48,17 @@ export class EventsDashboardComponent implements OnInit {
   onSelected(event: Event) {
     this.selectedEvent = event;
   }
+
+  loadEvents() {
+    this.eventsService.getEvents().subscribe((events: Event[]) => {
+      this.events = events;
+      this.events.forEach(event => {
+          }
+      );
+    }
+    );
+  }
+
 
 
   /*loadEvents(): Event[] {
@@ -62,23 +72,17 @@ export class EventsDashboardComponent implements OnInit {
   }
 */
   // loadEvents() {
-  //   this.eventsService.getEvents().subscribe(events => {
-  //     this.events = events;
+  //   // Load your events from the backend and then check if the user is attending each event
+  //   // For simplicity, let's assume you have a method to load events
+  //   this.eventsService.getEvents(); // Replace with actual call to load events
+  //   this.events.forEach(event => {
+  //     this.eventsService.isUserAttending(event, this.userId).subscribe(isAttending => {
+  //       if (isAttending) {
+  //         this.attendingEvents.add(String(event.id));
+  //       }
+  //     });
   //   });
-  //   return this.events;
   // }
-  loadEvents() {
-    // Load your events from the backend and then check if the user is attending each event
-    // For simplicity, let's assume you have a method to load events
-    this.eventsService.getEvents(); // Replace with actual call to load events
-    this.events.forEach(event => {
-      this.eventsService.isUserAttending(event, this.userId).subscribe(isAttending => {
-        if (isAttending) {
-          this.attendingEvents.add(String(event.id));
-        }
-      });
-    });
-  }
 
   onEdit(eventId: number) {
     this.router.navigate(['/edit-event', eventId]);
@@ -101,7 +105,7 @@ export class EventsDashboardComponent implements OnInit {
     });
 
 
-}
+  }
 
   attendEvent(eventId: string, userId: string): void {
     this.eventsService.attendEvent(eventId, userId).subscribe({
@@ -112,7 +116,7 @@ export class EventsDashboardComponent implements OnInit {
         console.error('Error adding user to event', error);
       }
     });
-}
+  }
 
   deleteUserFromEvent(eventId: string, userId: string): void {
     this.eventsService.deleteUserFromEvent(eventId, userId).subscribe({
@@ -131,4 +135,5 @@ export class EventsDashboardComponent implements OnInit {
   }
 
   protected readonly String = String;
+
 }

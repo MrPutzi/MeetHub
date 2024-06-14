@@ -1,22 +1,15 @@
-<div class="card" >
+<div class="card bg-gray-100 p-4 rounded-lg">
   <div *ngFor="let event of events" class="card-body">
-      <h5 class="card-title">{{event.name}}</h5>
-        <p class="card-text">Date: {{event.date}}</p>
-        <p class="card-text">Location: {{event.location}}</p>
-        <p class="card-text">Description: {{event.description}}</p>
-        <div class="btn-group" style="height: 50px ;width: 100px;">
-<!--          <button *ngIf="!isUserAttending(event)" type="button" class="btn btn-secondary btn-sm bi bi-pencil"-->
-<!--                  (click)="attendEvent(event.id.toString(), userId)" [id]="'attend-button-' + event.id">Attend</button>-->
-
-<!--          <button *ngIf="isUserAttending(event)" type="button" class="btn btn-danger btn-sm bi bi-person-fill-add"-->
-<!--                  (click)="deleteUserFromEvent(event.id.toString(), userId)" [id]="'unattend-button-' + event.id">Unattend</button>-->
-
-          <button *ngIf="!isUserAttending(event)" (click)="attendEvent(event.id.toString(), userId)">Attend</button>
-          <button *ngIf="isUserAttending(event)" (click) = "deleteUserFromEvent(event.id.toString(), userId)">Unattend</button>
-        <button type="button" class="btn btn-danger btn-sm bi bi-person-fill-add"
-        (click)="onDelete(event)" [id]="'delete-button-' + event.id">Delete</button>
-        <button type="button" class="btn btn-primary btn-sm bi bi-pencil-fill"
-        (click)="onEdit(event.id)" [id]="'edit-button-' + event.id">Edit</button>
-       </div>
+    <h5 class="card-title text-xl font-bold">{{event.name}}</h5>
+    <p class="card-text text-gray-600">Date: {{event.date | date:'dd.MM.yyyy'}}</p>
+    <p class="card-text text-gray-600">At: {{event.date | date:'HH:mm'}} 'o clock</p>
+    <p class="card-text text-gray-600">Location: {{event.location}}</p>
+    <p class="card-text text-gray-600">Description: {{event.description}}</p>
+    <div class="btn-group mt-4">
+      <button type="button" class="btn btn-danger btn-sm bi bi-person-fill-add bg-red-500 text-white rounded px-4 py-2"
+              (click)="onDelete(event)" [id]="'delete-button-' + event.id">Delete</button>
+      <button type="button" class="btn btn-primary btn-sm bi bi-pencil-fill bg-blue-500 text-white rounded px-4 py-2 ml-2"
+              (click)="onEdit(event.id)" [id]="'edit-button-' + event.id">Edit</button>
+    </div>
   </div>
 </div>
