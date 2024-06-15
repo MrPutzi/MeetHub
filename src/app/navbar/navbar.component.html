@@ -1,19 +1,8 @@
-<<<<<<< HEAD
-<nav class="navbar navbar-expand-lg navbar-dark bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/Dashboard">MeetHub</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-=======
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/Homepage"  >MeetHub</a>
     <div class="collapse navbar-collapse pl-16" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
->>>>>>> 3f3e581c7ea08cea88c44bd9c258c2a81a777a2b
         <li class="nav-item">
           <a class="nav-link" routerLink="/Dashboard" routerLinkActive="active">Explore Events</a>
         </li>
@@ -21,13 +10,7 @@
           <a class="nav-link" routerLink="/AddEvent" routerLinkActive="active">Add an event</a>
         </li>
       </ul>
-<<<<<<< HEAD
-      
       <span *ngIf="username" class="navbar-text">Logged in as: {{username}}</span>
-     
-=======
-      <span *ngIf="username" class="navbar-text">Logged in as: {{username}}</span>
->>>>>>> 3f3e581c7ea08cea88c44bd9c258c2a81a777a2b
       <ul class="navbar-nav d-flex mb-2 mb-lg-0">
         <li *ngIf="username; else elseBlock" class="nav-item">
           <button type="button" class="nav-link" (click)="logout()">Logout</button>

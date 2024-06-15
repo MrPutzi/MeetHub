@@ -7,12 +7,8 @@ import { MessageService } from './message.service';
 import { Route, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
-<<<<<<< HEAD
-export const DEFAULT_NAVIGATE_AFTER_LOGIN = "Dashboard";
-=======
 export const DEFAULT_NAVIGATE_AFTER_LOGIN = "/Dashboard";
 export const DEFAULT_REDIRECT_BEFORE_LOGIN = "/Login";
->>>>>>> 3f3e581c7ea08cea88c44bd9c258c2a81a777a2b
 
 @Injectable({
   providedIn: 'root'
@@ -201,5 +197,3 @@ logout() {
   }
 
 }
-
-

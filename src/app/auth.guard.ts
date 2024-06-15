@@ -13,15 +13,6 @@ export class AuthGuard implements CanActivate {
   // Inject Router so we can hand off the user to the Login Page
   constructor(private usersService: UsersService, private router: Router) { }
   
-<<<<<<< HEAD
-  
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-    ): Observable<boolean|UrlTree>|Promise<boolean|UrlTree>|boolean|UrlTree {
-    return this.checkIfUserIsLogged();
-    }
-=======
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
@@ -33,7 +24,6 @@ export class AuthGuard implements CanActivate {
         return false;
   }
 
->>>>>>> 3f3e581c7ea08cea88c44bd9c258c2a81a777a2b
     
   
 
@@ -41,10 +31,6 @@ export class AuthGuard implements CanActivate {
     if (this.usersService.loggedUser()) {
       return true;
     } else {
-<<<<<<< HEAD
-      // Redirect to login page or any other desired route
-=======
->>>>>>> 3f3e581c7ea08cea88c44bd9c258c2a81a777a2b
       this.router.navigate(['/login']);
       return false;
     }

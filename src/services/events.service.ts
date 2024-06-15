@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-=======
->>>>>>> 3f3e581c7ea08cea88c44bd9c258c2a81a777a2b
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -18,104 +14,10 @@ export class EventsService {
 
   constructor(private http: HttpClient) { }
 
-  getEvents(): Observable<Event[]> {
-    return this.http.get<Event[]>(`${this.url}/getevents`).pipe(
-      map(documents => documents.map(document => this.convertDocumentToEvent(document))),
-      catchError(error => this.errorHandling(error))
-    );
-  }
 
-  private convertDocumentToEvent(document: any): Event {
-    return new Event(
-      document.id,
-      document.name,
-      new Date(document.date),
-      document.location,
-      document.attendees,
-      document.description
-      // Add other fields as needed
-    );
-  }
- 
-  addEvent(event: Event): Observable<string> {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    const body = {
-      "name": event.name,
-      "date": event.date.toISOString(),
-      "location": event.location,
-      "attendees": event.attendees,
-      "description": event.description
-    };
-    return this.http.post(`${this.url}/addevent`, body, { headers }).pipe(
-      map(() => 'Event added'), 
-      catchError(error => this.errorHandling(error))
-    );
-  }
-
-
-<<<<<<< HEAD
-  public Events: Event[] = [
-  new Event(1, "Music listening", new Date(), "Bratislava", ["Marek", "Jano", "Adolf"]),
-  new Event(2, "Chilling", new Date(), "Bratislava", ["Marek", "Jano", "Adolf"]),
-  new Event(3, "Búchanie zdravotných", new Date(), "Bratislava", ["Marek", "Jano", "Adolf"]),
-  ];
-
-
-  constructor(private http: HttpClient) {}
-
-  getEventsSynchronous(): Event[] {
-    return this.Events;
-  }
-
-  public saveLocalEvent(event: Event): Observable<Event> {
-    event.id = this.Events.length + 1;
-    this.Events.push(event);
-    localStorage.setItem('events', JSON.stringify(this.Events));
-    return of(event);
-  }
-
-  getLocalEvents(): Observable<Event[]> {
-    const localEvents = JSON.parse(localStorage.getItem('events') || '[]') as Event[];
-    const allEvents = [...this.Events, ...localEvents];
-    return of(allEvents);
-  }
-/*
-  getEvents(): Observable<Event[]> {
-    const params = new HttpParams()
-      .set('dbName', 'test')
-      .set('collectionName', 'event');
-
-    return this.http.get<Event[]>(`${this.url}/getevents`, { params }).pipe(
-      map(jsonEvents => jsonEvents.map(jsonEvent => Event.clone(jsonEvent))),
-      catchError(error => this.errorHandling(error))
-    );
-  }
-*/
-
-
-
-  getEvent(id: number): Observable<Event> {
-    return this.http.get<Event>(`${this.url}/${id}`);
-  }
-
-  updateEvent(event: Event): Observable<Event> {
-    return this.http.put<Event>(`${this.url}/${event.id}`, event);
-  }
-
-  private cloneEvents(): Event[] {
-    return this.Events.map(event => Event.clone(event));
-  }
-
-  public saveEvent(event: Event): Observable<Event> {
-    return this.http.post<Event>(this.url, event).pipe(
-      map(jsonEvent => Event.clone(jsonEvent)),
-      catchError(error => this.errorHandling(error))
-    );
-=======
 
   getEvents(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}`);
->>>>>>> 3f3e581c7ea08cea88c44bd9c258c2a81a777a2b
   }
 
 

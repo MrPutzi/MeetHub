@@ -12,14 +12,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Auth } from '../entities/auth';
 import { AuthGuard } from './auth.guard';
 import { CommonModule } from '@angular/common';
-<<<<<<< HEAD
-=======
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddEventComponent } from './add-event/add-event.component';
 import { EditEventComponent } from './edit-event/edit-event.component';
 import {HomepageComponent} from "./homepage/homepage.component";
 import {MessagingComponent} from "./messaging/messaging.component";
->>>>>>> 3f3e581c7ea08cea88c44bd9c258c2a81a777a2b
 
 
 
@@ -31,18 +28,6 @@ import {MessagingComponent} from "./messaging/messaging.component";
     AddEventComponent,
     EditEventComponent
   ],
-<<<<<<< HEAD
-  imports: [   
-    AppRoutingModule,
-    BrowserModule,
-    CommonModule,
-    HttpClientModule,
-    FormsModule,
-    EventsDashboardComponent,
-    ReactiveFormsModule,
-    BrowserAnimationsModule
-  ],
-=======
     imports: [
         AppRoutingModule,
         BrowserModule,
@@ -56,7 +41,6 @@ import {MessagingComponent} from "./messaging/messaging.component";
         HomepageComponent,
         MessagingComponent,
     ],
->>>>>>> 3f3e581c7ea08cea88c44bd9c258c2a81a777a2b
   providers: [AuthGuard],
   bootstrap: [AppComponent]
 })

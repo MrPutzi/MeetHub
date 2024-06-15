@@ -71,14 +71,6 @@ export class EventsDashboardComponent implements OnInit {
     return this.events;
   }
 */
-<<<<<<< HEAD
-loadEvents(){
-  this.eventsService.getEvents().subscribe(events => {
-    this.events = events;
-  });
-  return this.events;
-}
-=======
   // loadEvents() {
   //   // Load your events from the backend and then check if the user is attending each event
   //   // For simplicity, let's assume you have a method to load events
@@ -91,7 +83,6 @@ loadEvents(){
   //     });
   //   });
   // }
->>>>>>> 3f3e581c7ea08cea88c44bd9c258c2a81a777a2b
 
   onEdit(eventId: number) {
     this.router.navigate(['/edit-event', eventId]);

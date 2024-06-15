@@ -1,46 +1,3 @@
-<<<<<<< HEAD
-  <form ng-submit="addEvent()">
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="eventName">Event Name</label>
-        <input type="text" class="form-control" id="eventName" placeholder="Event Name">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="eventDate">Event Date</label>
-        <input type="date" class="form-control" id="eventDate">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="eventLocation">Event Location</label>
-      <input type="text" class="form-control" id="eventLocation" placeholder="Event Location">
-    </div>
-    <div class="form-group">
-      <label for="eventDescription">Event Description</label>
-      <textarea class="form-control" id="eventDescription" rows="3"></textarea>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="eventOrganizer">Event Organizer</label>
-      <p  class="form-control" id="eventOrganizer" placeholder="Event Organizer" value="" readonly>{{eventOrganizer}}</p>
-
-      </div>
-      <div class="form-group col-md-6">
-        <label for="eventCategory">Event Category</label>
-        <select id="eventCategory" class="form-control">
-          <option selected> </option>
-          <option>Education</option>
-          <option>Sport</option>
-          <option>Social event</option>
-          <option>Else...</option>
-        </select>
-      </div>
-    </div>
-    <div class="form-group">
-     
-    </div>
-    <button type="submit" class="btn btn-primary">Add Event</button>
-  </form>
-=======
 <form [formGroup]="addEventForm" (ngSubmit)="onSubmit()">
   <div>
     <label for="name">Name:</label>
@@ -60,4 +17,3 @@
   </div>
   <button type="submit">Add Event</button>
 </form>
->>>>>>> 3f3e581c7ea08cea88c44bd9c258c2a81a777a2b
