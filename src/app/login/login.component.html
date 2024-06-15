@@ -1,5 +1,5 @@
-
 <form (ngSubmit)="onSubmit()" class="d-flex flex-column align-items-center">
+<<<<<<< HEAD
     <h2 class="h3 mb-3 fw-normal">Please sign in</h2>
     <div class="form-floating mb-3">
       <input type="text" [(ngModel)]="auth.username" name="login" class="form-control form-control-lg" />
@@ -11,9 +11,18 @@
     </div>
   
     <button class="btn btn-primary btn-lg w-100 py-2" type="submit">Sign in</button>
+=======
+  <h2 class="h3 mb-3 fw-normal">Please sign in</h2>
+  <div class="form-floating mb-3">
+    <input id="floatingInput" type="text" [(ngModel)]="auth.username" name="login" class="form-control form-control-lg" />
+    <label for="floatingInput">Login name</label>
+  </div>
+  <div class="form-floating mb-3">
+    <input id="floatingPassword" type="password" [(ngModel)]="auth.password" name="password" class="form-control form-control-lg" />
+    <label for="floatingPassword">Password</label>
+  </div>
+
+  <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+>>>>>>> 3f3e581c7ea08cea88c44bd9c258c2a81a777a2b
 </form>
 
- <!-- <input type="text" class="form-control" id="floatingInput"[(ngModel)]="auth.name" name="name">  
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="auth.password" name="pass">
-
---> 

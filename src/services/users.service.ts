@@ -4,27 +4,47 @@ import { BehaviorSubject, EMPTY, Observable, catchError, defaultIfEmpty, map, of
 import { Auth } from "../entities/auth";
 import { User } from "../entities/user";
 import { MessageService } from './message.service';
+import { Route, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
+<<<<<<< HEAD
 export const DEFAULT_NAVIGATE_AFTER_LOGIN = "Dashboard";
+=======
+export const DEFAULT_NAVIGATE_AFTER_LOGIN = "/Dashboard";
+export const DEFAULT_REDIRECT_BEFORE_LOGIN = "/Login";
+>>>>>>> 3f3e581c7ea08cea88c44bd9c258c2a81a777a2b
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
+    static getUsersId() {
+        throw new Error('Method not implemented.');
+    }
+
+  getUserId(): string {
+    return localStorage.getItem('umToken') || '';
+  }
+
+  getUsername(): string {
+    return localStorage.getItem('umUsername') || '';
+  }
+
+
   private restServerUrl: string = "http://localhost:8080/";
 
   private users: User[] = [
-    new User("MarekService","marek@jano.sk"), 
-    new User("JanoService","jano@jano.sk",1, new Date(), "tajne"), 
-    new User("AdolfService","adolf@ss.de"),
-    { id: 4, name: "MrPutzi", email: "asd@asd.sk",password: "tajne", lastLogin: new Date(), active: true },
+    new User("MarekService","marek@jano.sk"),
+    new User("JanoService","jano@jano.sk",1, new Date(), "tajne"),
+    new User("AdolfService","adolf@ss.de")
   ];
   private url = "http://localhost:8080/";
   private loggedUserSubject = new BehaviorSubject(this.username);
   navigateAfterLogin = DEFAULT_NAVIGATE_AFTER_LOGIN;
 
-  constructor(private http: HttpClient, 
-              private messageService: MessageService) { }
+  constructor(private http: HttpClient,
+              private messageService: MessageService,
+              private dialog: MatDialog) {}
 
   private get token(): string {
     return localStorage.getItem('umToken') || '';
@@ -34,7 +54,7 @@ export class UsersService {
       localStorage.setItem('umToken', value);
     } else {
       localStorage.removeItem('umToken');
-    }   
+    }
   }
   private get username(): string {
     return localStorage.getItem('umUsername') || '';
@@ -45,8 +65,12 @@ export class UsersService {
     } else {
       localStorage.removeItem('umUsername');
     }
-    this.loggedUserSubject.next(value);   
+    this.loggedUserSubject.next(value);
   }
+
+  public getUsersId(): string {
+    return this.username;
+    }
 
   public loggedUser(): Observable<string> {
     return this.loggedUserSubject.asObservable();
@@ -84,12 +108,12 @@ export class UsersService {
     return this.http.delete(`${this.url}user/${userId}/${this.token}`).pipe(
       map(() => true),
       catchError(error => this.errorHandling(error)),
-      defaultIfEmpty(false) 
+      defaultIfEmpty(false)
     )
       //this.url+ 'user/'+ userId + '/' + this.token);
   }
 
- 
+
 
   public checkToken(): Observable<boolean> {
     if (!this.token)
@@ -136,26 +160,31 @@ logout() {
   this.messageService.success("User is logged out.");
 }
 
- 
+
 
   isLoggedIn() : boolean {
     return !!this.token;
   }
 
-  errorHandling(httpError:any):Observable<never> {
+  // ...
+
+
+
+  errorHandling(httpError: any): Observable<never> {
     if (httpError instanceof HttpErrorResponse) {
       if (httpError.status === 0) {
         this.messageService.error("Server is not available. Try again later.");
         return EMPTY;
       }
       if (httpError.status < 500) {
-        const errMessage = httpError.error.errorMessage 
+        const errMessage = httpError.error.errorMessage
                               ? httpError.error.errorMessage
                               : JSON.parse(httpError.error).errorMessage;
         if ("unknown token" === errMessage) {
           this.logout();
         }
         this.messageService.error(errMessage);
+        this.openDialog(errMessage); // Open dialog with the error message
         return EMPTY;
       }
       if (httpError.status >= 500) {
@@ -166,6 +195,11 @@ logout() {
     console.error(httpError);
     return EMPTY;
   }
+
+  private openDialog(errorMessage: string): void {
+    alert(errorMessage);
+  }
+
 }
 
 

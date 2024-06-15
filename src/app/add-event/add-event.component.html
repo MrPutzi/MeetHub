@@ -1,3 +1,4 @@
+<<<<<<< HEAD
   <form ng-submit="addEvent()">
     <div class="form-row">
       <div class="form-group col-md-6">
@@ -39,3 +40,24 @@
     </div>
     <button type="submit" class="btn btn-primary">Add Event</button>
   </form>
+=======
+<form [formGroup]="addEventForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Name:</label>
+    <input id="name" formControlName="name">
+  </div>
+  <div>
+    <label for="date">Date:</label>
+    <input id="date" type="datetime-local" formControlName="date">
+  </div>
+  <div>
+    <label for="location">Location:</label>
+    <input id="location" formControlName="location">
+  </div>
+  <div>
+    <label for="description">Description:</label>
+    <textarea id="description" formControlName="description"></textarea>
+  </div>
+  <button type="submit">Add Event</button>
+</form>
+>>>>>>> 3f3e581c7ea08cea88c44bd9c258c2a81a777a2b

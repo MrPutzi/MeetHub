@@ -1,0 +1,22 @@
+<div class="container">
+  <h2>Edit Event</h2>
+  <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name">Name:</label>
+      <input id="name" formControlName="name">
+    </div>
+    <div>
+      <label for="date">Date:</label>
+      <input id="date" type="datetime-local" formControlName="date">
+    </div>
+    <div>
+      <label for="location">Location:</label>
+      <input id="location" formControlName="location">
+    </div>
+    <div>
+      <label for="description">Description:</label>
+      <textarea id="description" formControlName="description"></textarea>
+    </div>
+    <button type="submit">Save</button>
+  </form>
+</div>

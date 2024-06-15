@@ -1,4 +1,12 @@
+/* Nastavte farby a pozadie */
+.navbar {
+  background-color: gray;
+  color: gray;
+}
+
+/* Zvýraznite aktívny odkaz */
 .navbar-nav a.nav-link.active {
+<<<<<<< HEAD
   color: brown;
   font-weight: bold;
 }
@@ -57,6 +65,69 @@
 .navbar-nav li.nav-item a.nav-link {
   color: #000;
   text-decoration: none;
+=======
+  background-color: #007bff;
+  color: #383434;
+}
+
+/* Upravte vzhľad loga */
+.navbar-brand {
+  font-weight: bold;
+  margin-right: 1em;
+  scale: 150%;
+
+}
+
+/* Zmenšite navigačný panel na mobilných zariadeniach */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+  }
+
+  .navbar-brand {
+    margin-bottom: 0.5em;
+  }
+
+  .navbar-nav {
+    text-align: center;
+  }
+}
+
+/* Pridanie tieňa pri prechode myšou cez odkaz */
+.navbar-nav li.nav-item button.nav-link:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Odstráňte okraj z tlačidiel v navigačnom paneli */
+.navbar-nav li.nav-item button.nav-link {
+  border-radius: 0;
+}
+
+/* Pridanie okraja okolo aktívneho tlačidla */
+.navbar-nav li.nav-item button.nav-link.active {
+  border: 1px solid #007bff;
+}
+
+/* Zarovnajte text v navigačnom paneli vpravo */
+.navbar-nav li.nav-item a.nav-link {
+  text-align: right;
+}
+
+/* Pridanie medzery medzi položkami v navigačnom paneli */
+.navbar-nav li.nav-item {
+  margin-right: 1em;
+}
+
+/* Pridanie tieňa pod navigačný panel */
+.navbar {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Voliteľné: Pridanie farby pozadia pre text v navigačnom paneli */
+.navbar-text {
+  padding: 0.5em 1em;
+  border-radius: 5px;
+>>>>>>> 3f3e581c7ea08cea88c44bd9c258c2a81a777a2b
 }
 
 .navbar-nav li.nav-item a.nav-link:hover {
@@ -73,6 +144,7 @@
   justify-content: space-between;
   padding: 0.5rem 1rem;
 }
+<<<<<<< HEAD
 
 .navbar-brand {
   display: inline-block;
@@ -110,24 +182,71 @@
 
 .navbar-dark .navbar-brand {
   color: #fff;
+=======
+.navbar-brand {
+  font-weight: bold;
+  margin-right: 1em;
+}
+
+.navbar-nav {
+  text-align: center;
+}
+
+.navbar-nav .nav-link {
+  border-radius: 0;
+}
+
+.navbar-nav .nav-link.active {
+  border: 1px solid rgba(148, 199, 248, 0.5);
+}
+
+.navbar-nav .nav-link.active .navbar-text{
+  color:black;
+}
+
+.navbar-text  {
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  color: #cccccc;
+}
+
+.navbar-dark .navbar-brand {
+  color: #737373;
+>>>>>>> 3f3e581c7ea08cea88c44bd9c258c2a81a777a2b
 }
 
 .navbar-dark .navbar-brand:hover,
 .navbar-dark .navbar-brand:focus {
+<<<<<<< HEAD
   color: #fff;
 }
 
 .navbar-dark .navbar-nav .nav-link {
   color: rgba(255, 255, 255, 0.5);
+=======
+  color: #cfcfcf;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgb(200, 200, 200);
+>>>>>>> 3f3e581c7ea08cea88c44bd9c258c2a81a777a2b
 }
 
 .navbar-dark .navbar-nav .nav-link:hover,
 .navbar-dark .navbar-nav .nav-link:focus {
+<<<<<<< HEAD
   color: rgba(255, 255, 255, 0.75);
 }
 
 .navbar-dark .navbar-nav .nav-link.active {
   color: #fff;
+=======
+  color: rgb(94, 94, 94);
+}
+
+.navbar-dark .navbar-nav .nav-link.active {
+  color: #cccccc;
+>>>>>>> 3f3e581c7ea08cea88c44bd9c258c2a81a777a2b
 }
 
 .navbar-dark .navbar-nav .nav-link.disabled {
@@ -138,8 +257,12 @@
 .navbar-dark .navbar-nav .active > .nav-link,
 .navbar-dark .navbar-nav .nav-link.show,
 .navbar-dark .navbar-nav .nav-link.active {
+<<<<<<< HEAD
   color: #fff;
   background-color: brown;
+=======
+
+>>>>>>> 3f3e581c7ea08cea88c44bd9c258c2a81a777a2b
 }
 
 .navbar-dark .navbar-toggler {
@@ -152,14 +275,28 @@
 }
 
 .navbar-dark .navbar-text {
+<<<<<<< HEAD
   color: rgba(255, 255, 255, 0.5);
 }
 
 .navbar-dark .navbar-text a {
   color: #fff;
+=======
+  color: #cdcdcd;
+}
+
+.navbar-dark .navbar-text a {
+  color: #656565;
+>>>>>>> 3f3e581c7ea08cea88c44bd9c258c2a81a777a2b
 }
 
 .navbar-dark .navbar-text a:hover,
 .navbar-dark .navbar-text a:focus {
   color: #fff;
 }
+<<<<<<< HEAD
+=======
+.navbar-dark .navbar-text a.disabled {
+  color: rgba(255, 255, 255, 0.25);
+}
+>>>>>>> 3f3e581c7ea08cea88c44bd9c258c2a81a777a2b

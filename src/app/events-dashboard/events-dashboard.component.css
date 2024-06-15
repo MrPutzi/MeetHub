@@ -4,19 +4,21 @@
     padding: 1rem;
     margin-bottom: 1rem;
   }
-  
+
   .card-title {
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
   }
-  
+
   .card-text {
     font-size: 1rem;
     margin-bottom: 0.25rem;
   }
-  
+
   .btn-group {
     margin-top: 1rem;
     size: 2rem;
+    height: 50px;
+    width: 100px;
   }
 

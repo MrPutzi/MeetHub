@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
  <div class="card">
@@ -13,6 +14,20 @@
           (click)="onDelete(event)"></button>
       
       </div>
+=======
+<div class="card bg-gray-100 p-4 rounded-lg">
+  <div *ngFor="let event of events" class="card-body">
+    <h5 class="card-title text-xl font-bold">{{event.name}}</h5>
+    <p class="card-text text-gray-600">Date: {{event.date | date:'dd.MM.yyyy'}}</p>
+    <p class="card-text text-gray-600">At: {{event.date | date:'HH:mm'}} 'o clock</p>
+    <p class="card-text text-gray-600">Location: {{event.location}}</p>
+    <p class="card-text text-gray-600">Description: {{event.description}}</p>
+    <div class="btn-group mt-4">
+      <button type="button" class="btn btn-danger btn-sm bi bi-person-fill-add bg-red-500 text-white rounded px-4 py-2"
+              (click)="onDelete(event)" [id]="'delete-button-' + event.id">Delete</button>
+      <button type="button" class="btn btn-primary btn-sm bi bi-pencil-fill bg-blue-500 text-white rounded px-4 py-2 ml-2"
+              (click)="onEdit(event.id)" [id]="'edit-button-' + event.id">Edit</button>
+>>>>>>> 3f3e581c7ea08cea88c44bd9c258c2a81a777a2b
     </div>
   </div>
-  
+</div>

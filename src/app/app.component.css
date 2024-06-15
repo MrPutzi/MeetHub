@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .navbar {
     background-color: #f8f9fa;
   }
@@ -11,3 +12,21 @@
     background-color: #e2e6ea;
     color: #343a40;
   }
+=======
+.container {
+  background-color: gray;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1); 
+  height: 100%;
+}
+
+.body{
+  background-color: gray;
+}
+
+.navbar-dark .navbar-toggler-icon {
+  background-color: #fff;
+}
+>>>>>>> 3f3e581c7ea08cea88c44bd9c258c2a81a777a2b
