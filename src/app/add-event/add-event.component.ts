@@ -6,9 +6,11 @@ import { EventsService } from '../../services/events.service';
 import { Inject } from '@angular/core';
 import { UsersService } from '../../services/users.service';
 import { NgForm } from '@angular/forms';
-import { Observer } from 'rxjs';
+import { Observer, Observable, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {Router} from "@angular/router";
+import { MessageService } from '../../services/message.service';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-event',
@@ -21,7 +23,8 @@ export class AddEventComponent {
   constructor(
     private eventsService: EventsService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) {
     this.addEventForm = this.fb.group({
       name: ['', Validators.required],
@@ -33,9 +36,25 @@ export class AddEventComponent {
 
   onSubmit(): void {
     if (this.addEventForm.valid) {
-      this.eventsService.addEvent(this.addEventForm.value).subscribe(() => {
+      this.eventsService.addEvent(this.addEventForm.value).pipe(
+        catchError(error => this.errorHandling(error))
+      ).subscribe(() => {
         this.router.navigate(['/Dashboard']);
       });
     }
+  }
+
+  errorHandling(httpError: any): Observable<never> {
+    if (httpError.status === 0) {
+      this.messageService.error("Network error: Please check your internet connection.");
+    } else if (httpError.status >= 400 && httpError.status < 500) {
+      this.messageService.error("Client error: Please check the data you have entered.");
+    } else if (httpError.status >= 500) {
+      this.messageService.error("Server error: Please try again later.");
+    } else {
+      this.messageService.error("An unexpected error occurred. Please try again");
+    }
+    console.error(httpError);
+    return throwError(httpError);
   }
 }
