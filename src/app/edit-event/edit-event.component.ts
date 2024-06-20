@@ -21,7 +21,7 @@ export class EditEventComponent implements OnInit {
     this.eventForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      date: ['', Validators.required], // Adjusted to handle date format
+      date: ['', Validators.required],
       location: ['', Validators.required],
     });
   }

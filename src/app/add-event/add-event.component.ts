@@ -1,14 +1,7 @@
-import {E} from '@angular/cdk/keycodes';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Event } from '../../entities/event';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EventsService } from '../../services/events.service';
-import { Inject } from '@angular/core';
-import { UsersService } from '../../services/users.service';
-import { NgForm } from '@angular/forms';
-import { Observer } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import {Router} from "@angular/router";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-event',
@@ -18,11 +11,7 @@ import {Router} from "@angular/router";
 export class AddEventComponent {
   addEventForm: FormGroup;
 
-  constructor(
-    private eventsService: EventsService,
-    private fb: FormBuilder,
-    private router: Router
-  ) {
+  constructor(private eventsService: EventsService, private fb: FormBuilder, private router: Router) {
     this.addEventForm = this.fb.group({
       name: ['', Validators.required],
       date: ['', Validators.required],
@@ -33,8 +22,9 @@ export class AddEventComponent {
 
   onSubmit(): void {
     if (this.addEventForm.valid) {
-      this.eventsService.addEvent(this.addEventForm.value).subscribe(() => {
-        this.router.navigate(['/Dashboard']);
+      this.eventsService.addEvent(this.addEventForm.value).subscribe({
+        next: () => this.router.navigate(['/Dashboard']),
+        error: (error) => console.error(error)
       });
     }
   }

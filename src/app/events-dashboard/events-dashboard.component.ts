@@ -107,32 +107,8 @@ export class EventsDashboardComponent implements OnInit {
 
   }
 
-  attendEvent(eventId: string, userId: string): void {
-    this.eventsService.attendEvent(eventId, userId).subscribe({
-      next: (response) => {
-        console.log('User added to event successfully', response);
-      },
-      error: (error) => {
-        console.error('Error adding user to event', error);
-      }
-    });
-  }
-
-  deleteUserFromEvent(eventId: string, userId: string): void {
-    this.eventsService.deleteUserFromEvent(eventId, userId).subscribe({
-      next: () => {
-        console.log('User deleted from event successfully');
-      },
-      error: (error) => {
-        console.error('Error deleting user from event', error);
-      }
-    });
-  }
 
 
-  isUserAttending(eventId: Event): Observable<boolean> {
-    return this.eventsService.isUserAttending(eventId, this.userId);
-  }
 
   protected readonly String = String;
 

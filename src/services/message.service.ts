@@ -1,42 +1,30 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { User } from '../entities/user';
+import { Subject, Observable } from 'rxjs';
+
+export interface Message {
+  message: string;
+  type: 'error' | 'success';
+}
 
 @Injectable({
   providedIn: 'root'
 })
-export class MessageService {
-
-  msgSubject = new Subject<Message>();
-  users: User [] = [];
-
-  constructor() { }
-
-
-  isAdmin(userId: number): boolean {
-    const user = this.users.find(user => user.id === userId);
-    return user?.role === 'admin';
+export class MessageService implements MessageService {
+  handleError(error: any): void {
+    console.error('An error occurred:', error);
   }
-  
+
+  private msgSubject = new Subject<Message>();
+
   getMessages(): Observable<Message> {
     return this.msgSubject.asObservable();
   }
 
   error(message: string) {
-    this.msgSubject.next({message, type:'error'});
+    this.msgSubject.next({ message, type: 'error' });
   }
 
   success(message: string) {
-    this.msgSubject.next({message, type:'success'});
+    this.msgSubject.next({ message, type: 'success' });
   }
 }
-
-export interface Message {
-  message: string;
-  type: 'error'|'success';
-}
-
-
-
-
-
