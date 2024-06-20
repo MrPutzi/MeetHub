@@ -6,6 +6,7 @@ import {DatePipe, NgFor, NgIf} from '@angular/common'; // Import NgFor directive
 import { Observable, map } from 'rxjs';
 import { UsersService } from '../../services/users.service';
 import {AuthGuard} from "../auth.guard";
+import {MessageService} from "../../services/message.service";
 
 @Component({
   selector: 'app-events-dashboard',
@@ -27,7 +28,8 @@ export class EventsDashboardComponent implements OnInit {
   constructor(private eventsService: EventsService,
               private router: Router,
               private usersService: UsersService,
-              private authService: AuthGuard){
+              private authService: AuthGuard,
+              private messageService: MessageService){
   }
 
   ngOnInit() {
@@ -45,66 +47,39 @@ export class EventsDashboardComponent implements OnInit {
     });
   }
 
-  onSelected(event: Event) {
-    this.selectedEvent = event;
-  }
 
   loadEvents() {
-    this.eventsService.getEvents().subscribe((events: Event[]) => {
-      this.events = events;
-      this.events.forEach(event => {
-          }
-      );
-    }
+    this.eventsService.getEvents().subscribe(
+      (events: Event[]) => {
+        this.events = events;
+      },
+      error => {
+        this.messageService.error(error);
+      }
     );
   }
 
 
 
-  /*loadEvents(): Event[] {
-
-    this.eventsService.getLocalEvents().subscribe(events => {
-      this.events = events;
-
-    });
-
-    return this.events;
-  }
-*/
-  // loadEvents() {
-  //   // Load your events from the backend and then check if the user is attending each event
-  //   // For simplicity, let's assume you have a method to load events
-  //   this.eventsService.getEvents(); // Replace with actual call to load events
-  //   this.events.forEach(event => {
-  //     this.eventsService.isUserAttending(event, this.userId).subscribe(isAttending => {
-  //       if (isAttending) {
-  //         this.attendingEvents.add(String(event.id));
-  //       }
-  //     });
-  //   });
-  // }
-
   onEdit(eventId: number) {
-    this.router.navigate(['/edit-event', eventId]);
+    this.router.navigate(['/edit-event', eventId]).catch(error => {
+      // Display the error message to the user
+      this.messageService.error(error);
+    });
   }
-
-  // onDelete(eventId: number) {
-  //   this.eventsService.deleteEvent(eventId).subscribe(response => {
-  //     console.log(response); // Handle the response as needed
-  //     this.loadEvents(); // Refresh the event list after deleting
-  //   });
-  // }
 
   onDelete(event: Event) {
-    this.eventsService.deleteEvent(event.id.toString()).subscribe(response => {
-      console.log(response); // Handle the response as needed
-      //wait few seconds before refreshing the event list
-      setTimeout(() => {
-        this.loadEvents();
-      }, 1000);
+    this.eventsService.deleteEvent(event.id.toString()).subscribe({
+      next: (response) => {
+        console.log(response); // Handle the response as needed
+        setTimeout(() => {
+          this.loadEvents();
+        }, 1000);
+      },
+      error: (error) => {
+        this.messageService.error(error);
+      }
     });
-
-
   }
 
 

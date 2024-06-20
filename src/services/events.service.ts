@@ -56,7 +56,7 @@ export class EventsService {
       // Server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    this.messageService.error(errorMessage);
+    this.messageService.error(errorMessage); // This will display the error message to the user
     return throwError(errorMessage);
   }
 
