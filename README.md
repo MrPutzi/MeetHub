@@ -1,24 +1,38 @@
-# MeetHub
+<h1 align="center">Welcome to MeetHub 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-0.0.0-blue.svg?cacheSeconds=2592000" />
+</p>
 
-Running the Java Server
-Open a terminal window.
+> School project using Angular Technology.
 
-Navigate inside the project folder with:
+## Install
 
-cd Meethub
+```sh
+npm install
+```
 
-Start the server with:
+## Usage
 
-java -jar demo.jar
-
-Running the angular project
-Open a new terminal window
-
-Navigate inside the project folder with:
-
-cd Meethub
-
-Start the project
-
+```sh
 ng serve
+```
 
+## Run tests
+
+```sh
+npm run test
+```
+
+## Author
+
+👤 **Roland Fekete, Michal Balint**
+
+* Github: [@MrPutzi, Met3x1]
+
+
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+***
